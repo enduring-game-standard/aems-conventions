@@ -31,13 +31,13 @@ Examples below:
    - Optional: `weakness` (array), `behavior` hints for clients.
 
 4. **State for Instances**  
-   Mutable data (position, current_health, state) references a Manifestation.
+   Mutable data (position, current_health, state) is tracked via State events referencing the player's Asset.
 
 ## Example: Universal Entity (Pinky Demon)
 
 ```json
 {
-  "kind": 30001,
+  "kind": 30050,
   "tags": [
     ["d", "pinky-demon"],
     ["name", "Pinky Demon"],
@@ -56,7 +56,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30002,
+  "kind": 30051,
   "tags": [
     ["d", "classic:pinky-demon"],
     ["entity", "<pinky-demon_entity_id>", "pinky-demon"],
@@ -80,7 +80,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30002,
+  "kind": 30051,
   "tags": [
     ["d", "modern:pinky-demon"],
     ["entity", "<pinky-demon_entity_id>", "pinky-demon"],

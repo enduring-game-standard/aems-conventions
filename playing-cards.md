@@ -36,7 +36,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30002,
+  "kind": 30051,
   "tags": [
     ["d", "text:ace-spades"],
     ["entity", "<stdcard_ace-spades_entity_id>", "stdcard:ace-spades"],

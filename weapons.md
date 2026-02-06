@@ -32,13 +32,13 @@ Examples below:
    - Optional: `material`, `special_ability` (array), `glows: true`.
 
 4. **State for Instances**  
-   Mutable data (condition, ammo/battery, enchantments) references a Manifestation.
+   Mutable data (condition, ammo/battery, enchantments) is tracked via State events referencing the player's Asset.
 
 ## Example: Universal Entity (Generic Sword)
 
 ```json
 {
-  "kind": 30001,
+  "kind": 30050,
   "tags": [
     ["d", "sword"],
     ["name", "Sword"],
@@ -56,7 +56,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30002,
+  "kind": 30051,
   "tags": [
     ["d", "minecraft:iron-sword"],
     ["entity", "<sword_entity_id>", "sword"],
@@ -76,7 +76,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30001,
+  "kind": 30050,
   "tags": [
     ["d", "master-sword"],
     ["name", "Master Sword"],
@@ -96,7 +96,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30002,
+  "kind": 30051,
   "tags": [
     ["d", "botw:master-sword"],
     ["entity", "<master-sword_entity_id>", "master-sword"],
@@ -116,7 +116,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30001,
+  "kind": 30050,
   "tags": [
     ["d", "energy-sword"],
     ["name", "Energy Sword"],
@@ -136,7 +136,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30002,
+  "kind": 30051,
   "tags": [
     ["d", "infinite:energy-sword"],
     ["entity", "<energy-sword_entity_id>", "energy-sword"],
