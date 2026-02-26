@@ -73,6 +73,8 @@ Not every variant deserves its own Entity:
 
 The test: if removing the specific identity would lose something meaningful (lore, unique mechanics, cross-media recognition), it warrants a separate Entity.
 
+For a comprehensive, repeatable rubric — including the four-test framework (Verb Test, Cross-Game Test, Substitution Test, Mechanical Signature Test) and guidance on acquisition behavior, ammo taxonomy, decorations, and projectiles — see [Entity Abstraction Conventions](./entity-abstraction.md).
+
 ## Example: Convention-Compliant Events
 
 A generic sword Entity and a game-specific Manifestation, following all five conventions:
@@ -119,6 +121,7 @@ The Entity is universal and immutable. The Manifestation is scoped to Minecraft,
 
 Each domain file provides worked examples and recommended patterns:
 
+- [entity-abstraction.md](./entity-abstraction.md) — Four-test rubric for Entity vs. Manifestation decisions, with cross-domain foundations.
 - [playing-cards.md](./playing-cards.md) — Standard decks, rendering properties, composition.
 - [weapons.md](./weapons.md) — Generic vs. legendary/distinct weapons, material variants, cross-genre adaptation.
 - [enemies.md](./enemies.md) — Archetypal monsters across game eras, behavioral properties.
