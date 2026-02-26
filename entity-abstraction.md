@@ -2,13 +2,36 @@
 
 These optional conventions provide a structured rubric for deciding when a game concept warrants its own AEMS Entity versus when it should be a Manifestation of a broader archetype. They extend the [Iconicity Threshold](./README.md#5-iconicity-threshold-for-entities) with cross-domain reasoning and a repeatable four-test framework.
 
-The rubric applies to all AEMS domains — weapons, enemies, items, decorations, projectiles, and any future category. It is domain-neutral by design: the same tests that determine whether a sword warrants its own Entity also determine whether a health pickup or a decorative pillar does.
+The rubric applies to all AEMS domains — weapons, enemies, items, environment objects, projectiles, NPCs, and any future category. It is domain-neutral by design: the same tests that determine whether a sword warrants its own Entity also determine whether a health pickup, a locked door, or a decorative pillar does.
 
 ## The Problem
 
 AEMS Entities are universal archetypes. They should be broad enough to be discovered and referenced across games, but specific enough to carry meaningful identity. Too broad (a single `item` Entity) and queries return noise. Too narrow (a separate Entity for every stat variant) and the namespace proliferates without adding discoverability.
 
 The right abstraction level is not obvious. A health-restoring item in DOOM (stimpack, picked up instantly) and in Final Fantasy VII (Potion, stored in inventory, used from menu) do the same thing through different interaction patterns. Are they the same Entity? A DOOM pillar and a Quake pillar look different but serve the same mechanical role. Are they the same Entity? The rubric answers these questions from first principles.
+
+## Scope: Things, Not Mechanics
+
+The rubric applies to **things** — objects a player possesses, encounters, or interacts with in a game world. Swords, health potions, locked doors, enemies, puzzle panels, audio logs, vehicles. These are AEMS Entities.
+
+The rubric does **not** apply to **mechanics** — rules governing how those things behave. Constraint-satisfaction logic, stamina-attack tradeoffs, time-rewind rules, portal-traversal physics. These are [MAPS Patterns](../ludic-notation-standard/README.md), not AEMS Entities. Mechanics describe *conversation structure* — the grammar that makes gameplay meaningful. They belong in the notation layer (cumulative craft), not the entity layer (durable substrate).
+
+The distinction follows from the AEMS standard's own founding analogy: *a chess piece belongs to you regardless of which board you play on*. The chess piece is the Entity. The L-shaped movement rule governing the knight is not an Entity — it is a Pattern. The piece persists as a thing. The rule transmits as knowledge.
+
+Seven independent lines of evidence converge on this boundary:
+
+| Domain | Principle | Implication |
+|--------|-----------|-------------|
+| **AEMS standard** | "Chess piece belongs to you" | Entities are things you possess/encounter, not rules |
+| **Ludii** (Browne, 2020) | G = ⟨Mode, Equipment, Rules⟩ | Equipment (AEMS) and Rules (MAPS) are formally distinct categories |
+| **Ranganathan** | Personality vs. Energy | Things have Personality (identity); mechanics are Energy (process) |
+| **Wittgenstein** | "Meaning is use" | The piece is the object; the rule is the grammar that gives it meaning |
+| **Music ontology** | Instrument vs. Form | A violin is an object; a fugue is a structure — ontologically distinct |
+| **HPC theory** | Property clusters of *kinds* | Kinds are categories of things, not processes |
+| **Three-pillar architecture** | Substrate ≠ Craft | Durable substrate (things) and cumulative craft (knowledge) are different pillars |
+
+> [!IMPORTANT]
+> **Why this matters for the rubric.** The four tests below can produce false positives when applied to mechanics. A maze has a verb ("solve"), cross-game presence (mazes appear everywhere), substitutability (any game could have a maze), and a property cluster ({grid, entrance, exit, find path}). It passes 4/4. But a maze is not a thing — it is a rule structure. The scope boundary catches this *before* the tests are applied: if the candidate is a process rather than an object, it is a MAPS Pattern, and the four tests do not apply.
 
 ## Theoretical Foundations
 
@@ -72,6 +95,8 @@ If independent designers in independent contexts arrive at the same concept, it 
 | BFG 9000 | DOOM exclusively | ❌ Game-specific Entity |
 | "Tall green DOOM pillar" | DOOM exclusively | ❌ Manifestation of `obstacle-pillar` |
 
+The Cross-Game Test identifies natural kinds via *convergent evolution* — independent designers arriving at the same concept independently. A different kind of evidence exists: *franchise persistence*. An Octorok appears in 20+ Zelda titles across 40 years but zero non-Zelda games. It fails Cross-Game strictly, yet clearly warrants an Entity. Franchise persistence proves *cultural durability*, not convergent evolution — a different mechanism establishing the same conclusion. The 3/4 scoring rule already handles this: franchise icons typically pass the Verb, Substitution, and Mechanical Signature tests while failing Cross-Game, yielding 3/4 and Entity status. The Iconicity Threshold (see [README §5](./README.md#5-iconicity-threshold-for-entities)) provides the formal justification.
+
 ### Test 3: The Substitution Test
 
 > "Could you meaningfully swap this Entity's Manifestation from one game into another?"
@@ -123,11 +148,21 @@ Ambiguous d-tags (e.g., `ammo-shell`) should be avoided. "Shell" means both shot
 | `night-vision` | `light-amplification-visor` | Too specific — DOOM's name for a universal concept |
 | `projectile-rocket` | `rocket` | Ambiguous — the weapon or the projectile? |
 
-### Decorations and Non-Interactive Objects
+### Environment Objects
 
-Non-interactive objects (pillars, torches, trees, gore decorations) almost never pass the Cross-Game Test as specific visuals. But the *functional concept* often does: pillars appear in every game with architecture, torches in every game with medieval settings.
+Environment objects fall into two categories with very different Entity implications:
 
-Decoration Entities should be defined at the **functional concept level** (e.g., `obstacle-pillar`, `torch`, `gore-prop`). Game-specific variants are Manifestations:
+**Interactive gating objects** — locked doors, destructible walls, pushable blocks — are among the most universal archetypes in gaming. They pass all four tests overwhelmingly. A locked door appears in DOOM, Zelda, Resident Evil, Metroid, Dark Souls, Binding of Isaac, and hundreds of other unrelated games with the same fundamental mechanical role: {blocks passage, requires key/condition, opens permanently}. These warrant Entities at the **mechanical function level**:
+
+| Entity | Property Cluster | Examples |
+|--------|-----------------|---------|
+| `locked-door` | {blocks passage, requires key, opens permanently} | DOOM keyed door, Zelda locked door, RE door |
+| `destructible-wall` | {appears solid, destroyed by weapon/tool, reveals passage} | DOOM secret wall, Zelda bombable wall, Metroid breakable block |
+| `pushable-block` | {movable by player, reveals passage or triggers event} | Zelda dungeon block, Tomb Raider block, Sokoban crate |
+
+The Verb Test is the discriminator. Interactive environment objects have verb clusters (`approach + key → opens`, `attack → destroys`, `push → reveals`) that distinguish them from passive obstacles.
+
+**Non-interactive obstacles** (pillars, barrels, trees, gore decorations) almost never pass the Cross-Game Test as specific visuals. But the *functional concept* often does: pillars appear in every game with architecture, torches in every game with medieval settings. Non-interactive Entities should be defined at the **functional concept level** (e.g., `obstacle-pillar`, `torch`, `gore-prop`). Game-specific variants are Manifestations:
 
 ```json
 {
@@ -135,7 +170,7 @@ Decoration Entities should be defined at the **functional concept level** (e.g.,
   "tags": [
     ["d", "obstacle-pillar"],
     ["name", "Pillar"],
-    ["category", "decoration"],
+    ["category", "environment"],
     ["type", "obstacle"],
     ["subtype", "structural"]
   ],
@@ -144,6 +179,32 @@ Decoration Entities should be defined at the **functional concept level** (e.g.,
   }
 }
 ```
+
+### Iconicity vs. Mechanical Archetype
+
+Some things are simultaneously a universal mechanical pattern and an iconic specific thing. The Triforce in Zelda functions mechanically as a `quest-macguffin` (collect N pieces to access the final area — a pattern shared by Mario 64 Stars, Sonic's Chaos Emeralds, and Banjo-Kazooie's Jiggies). But the Triforce also has 40 years of persistent lore, cross-media recognition, and identity that would be *lost* if filed under `quest-macguffin`.
+
+Ranganathan resolves this. The Personality facet is *what something fundamentally is*. The Triforce's Personality is "the Triforce" — a sacred golden relic of Hyrule. Its mechanical function as a collectible progression gate is the Energy facet (how the game uses it), which belongs on the Manifestation.
+
+**The precedence rule:** When a thing has both a universal mechanical archetype (`quest-macguffin`) and an iconic identity that passes the Iconicity Threshold (`triforce`), the iconic identity takes precedence as the Entity. The mechanical pattern becomes a grouping tag (e.g., `["type", "quest-macguffin"]`) on the Entity, preserving discoverability without sacrificing identity.
+
+```json
+{
+  "kind": 30050,
+  "tags": [
+    ["d", "triforce"],
+    ["name", "Triforce"],
+    ["category", "artifact"],
+    ["type", "quest-macguffin"],
+    ["origin", "zelda"]
+  ],
+  "content": {
+    "description": "A sacred golden relic composed of three triangles, each embodying Power, Wisdom, or Courage. Collecting its pieces is the central quest of the Zelda series."
+  }
+}
+```
+
+This generalizes: the Master Sword is Entity `master-sword` with `["type", "melee"]`, not a Manifestation of `sword`. Ganon is Entity `ganon` with `["type", "boss"]`, not a Manifestation of `final-boss`. Whenever removing the specific identity would lose something meaningful, the identity is the Personality and the mechanical role is Energy.
 
 ### Projectiles: Mechanical Signature Grouping
 
@@ -158,6 +219,21 @@ Projectiles rarely warrant individual Entities. Instead, group them by their mec
 
 Each game's specific projectiles become Manifestations of the appropriate cluster Entity.
 
+### Games Without Traditional Entities
+
+Many acclaimed games have few or no combat entities — no weapons, no enemies, no inventory. The rubric still applies: test each *thing* in the game world. But expect a thin Entity layer. The richness of these games lives in their mechanical grammar (MAPS Patterns), not their object taxonomy (AEMS Entities).
+
+| Game | AEMS Entities (Things) | MAPS Patterns (Mechanics) |
+|------|----------------------|-------------------------|
+| The Witness | puzzle-panel, locked-door, audio-log, vehicle | maze, constraint-separation, symmetry, shape-fitting, environmental-perception |
+| Tetris | playfield | shape-fitting, line-clearing |
+| Braid | player-character, key, door, puzzle-piece | time-rewind, time-immunity, shadow-clone |
+| Portal | player-character, portal-gun, companion-cube, turret | portal-traversal, momentum-conservation |
+
+A thin Entity layer is the correct answer for these games, not a sign that the rubric failed. A puzzle panel is a thing (Entity). The constraint-separation rule governing what the player draws on it is a mechanic (MAPS Pattern). A time-rewind power is a mechanic (MAPS Pattern), not a thing the player picks up and stores.
+
+The general principle: **the more a game's identity lives in its mechanics rather than its objects, the thinner its AEMS layer and the richer its MAPS layer.** Both layers are necessary. They are different pillars.
+
 ## Cross-Domain Validation
 
 The rubric's theoretical foundations converge independently across multiple domains:
@@ -168,9 +244,11 @@ The rubric's theoretical foundations converge independently across multiple doma
 | **Library science** (Ranganathan) | Personality facet = Entity; Energy/Matter = contextual | Only "what it is" goes on Entity; "how it works" is Manifestation |
 | **Biology** (lumpers vs. splitters) | Right granularity depends on purpose | AEMS optimizes for cross-game discoverability → lump |
 | **Game design** (Björk/Holopainen) | Pickup, Consumable, Equipment are distinct patterns | These are verb clusters, belonging to the Energy facet → Manifestation |
+| **Formal game theory** (Ludii) | G = ⟨Mode, Equipment, Rules⟩ | Equipment (AEMS) and Rules (MAPS) are formally distinct categories |
 | **DOOM modding** (ZDoom class hierarchy) | Actor > Inventory > Weapon/Ammo/Powerup | 25 years of community practice validates category-level splitting |
 | **Theater** (prop classification) | Set dressing, hand prop, personal prop | Interaction pattern determines classification |
 | **D&D** (item taxonomy) | "Wondrous Items" = honest catch-all | Any taxonomy needs a catch-all; minimize what falls into it |
+
 
 ---
 
