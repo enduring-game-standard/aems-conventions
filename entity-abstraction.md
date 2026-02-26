@@ -16,6 +16,8 @@ The rubric applies to **things** — objects a player possesses, encounters, or 
 
 The rubric does **not** apply to **mechanics** — rules governing how those things behave. Constraint-satisfaction logic, stamina-attack tradeoffs, time-rewind rules, portal-traversal physics. These are [MAPS Patterns](../ludic-notation-standard/README.md), not AEMS Entities. Mechanics describe *conversation structure* — the grammar that makes gameplay meaningful. They belong in the notation layer (cumulative craft), not the entity layer (durable substrate).
 
+The rubric also does not apply to **conditions** — states applied to things. Poison, blindness, confusion, paralysis, and fear are qualities or states in the Aristotelian sense: they inhere in substances rather than existing independently. In MAPS terms, they are States modified by Verbs. What *are* AEMS Entities are the **things that deliver conditions**: a Potion of Poison (consumable Entity), a Scroll of Confusion (scroll Entity), a monster with a paralysis attack (enemy Entity whose Manifestation specifies `special_attack: paralysis`). The delivery vehicle is the thing; the condition is the state change it causes.
+
 The distinction follows from the AEMS standard's own founding analogy: *a chess piece belongs to you regardless of which board you play on*. The chess piece is the Entity. The L-shaped movement rule governing the knight is not an Entity — it is a Pattern. The piece persists as a thing. The rule transmits as knowledge.
 
 Seven independent lines of evidence converge on this boundary:
@@ -74,9 +76,12 @@ The player's primary interaction verb determines the mechanical pattern. Things 
 | `pick up → instant effect` | Pickup | DOOM stimpack, Zelda heart |
 | `pick up → store → use later` | Consumable | FF7 Potion, Skyrim healing potion |
 | `pick up → equip → active use` | Weapon | DOOM shotgun, Halo pistol |
+| `pick up → equip → use (limited charges)` | Charged Device | D&D wand, Zelda magic items, Megaman weapons |
 | `shoot / throw → impact effect` | Projectile | DOOM rocket, Quake nail |
 | `none (blocked by / navigate around)` | Obstacle | Pillar, barrel, crate |
 | `approach → unlocks passage` | Key | DOOM keycard, Zelda key |
+| `find → possess → triggers game completion` | Quest Objective | Amulet of Yendor, Triforce (assembled) |
+| `find → collect N → unlocks zone/ability` | Progression Collectible | Power Stars, Shine Sprites, Korok Seeds |
 
 The Verb Test reveals the *type* of entity. Two things with the same verb but different effects (e.g., pickup-instant-heal vs. pickup-instant-armor) are different Entities. Two things with the same effect but different verbs (e.g., instant-heal-pickup vs. stored-heal-consumable) are the **same Entity** — the verb difference is an Energy facet and belongs on the Manifestation.
 
@@ -205,6 +210,27 @@ Ranganathan resolves this. The Personality facet is *what something fundamentall
 ```
 
 This generalizes: the Master Sword is Entity `master-sword` with `["type", "melee"]`, not a Manifestation of `sword`. Ganon is Entity `ganon` with `["type", "boss"]`, not a Manifestation of `final-boss`. Whenever removing the specific identity would lose something meaningful, the identity is the Personality and the mechanical role is Energy.
+
+### Quest and Progression Items
+
+Quest objectives and progression collectibles are universal archetypes that pass all four tests — they appear in hundreds of games with the same fundamental mechanical role. Their verb clusters are in the table above.
+
+| Entity | Property Cluster | Examples |
+|--------|-----------------|---------|
+| `quest-objective` | {unique, triggers completion, carried, game-ending} | Amulet of Yendor, assembled Triforce |
+| `progression-collectible` | {multiple instances, countable, gate-threshold, zone-unlocking} | Power Stars, Shine Sprites, Korok Seeds, Chaos Emeralds |
+
+These archetypes follow the same Iconicity rules as every other domain. A Power Star is a Manifestation of `progression-collectible`. But when a progression collectible accumulates persistent lore, cross-media recognition, and cultural identity — the Chaos Emeralds, the Triforce pieces — the Iconicity Threshold applies and the iconic identity becomes the Entity:
+
+- **Chaos Emeralds** → Entity: `chaos-emerald` with `["type", "progression-collectible"]`, `["origin", "sonic"]`
+- **Korok Seeds** → Manifestation of `progression-collectible` (iconic within BotW/TotK but not at Iconicity Threshold)
+- **Amulet of Yendor** → Manifestation of `quest-objective` (iconic within roguelikes but not at Iconicity Threshold)
+
+A useful heuristic for this domain: **could you swap the object's identity for something else without changing the game's mechanical structure?** If swapping the Amulet of Yendor for a "Golden Crown" changes nothing about Rogue's gameplay, the identity is interchangeable — it's a Manifestation. If removing the Triforce from Zelda would alter the game's meaning and not just its theme, the identity is load-bearing — it's an Entity.
+
+### Charged Devices
+
+Charged devices have a verb cluster distinct from both consumables (single-use, destroyed on use) and equipment (unlimited use). Their pattern — equipped, limited uses, may be recharged or depleted — is the Verb Test discriminator. A wand with 5 charges and a wand with 50 charges are Manifestations of the same Entity (`wand`); the charge count is a Manifestation property (Energy facet).
 
 ### Projectiles: Mechanical Signature Grouping
 

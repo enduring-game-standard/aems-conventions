@@ -2,7 +2,7 @@
 
 **Shared patterns for interoperable AEMS events.**
 
-These conventions are optional, community-maintained guidelines for structuring [AEMS](https://github.com/enduring-game-standard/aems-standard) events. They are not part of the core protocol. The standard defines the four event kinds and their architecture; these conventions define the shared vocabulary that helps independent implementations render and process the same entities consistently.
+These conventions are optional, community-maintained guidelines for structuring [AEMS](https://github.com/enduring-game-standard/aems-schema) events. They are not part of the core protocol. The standard defines the four event kinds and their architecture; these conventions define the shared vocabulary that helps independent implementations render and process the same entities consistently.
 
 Because AEMS events are plain-text Nostr events, conventions are discoverable via relay queries and publishable by anyone without permission. Adopting them is voluntary. Forking them is expected.
 
@@ -69,9 +69,10 @@ Consistent property names matter because they enable cross-client rendering and 
 Not every variant deserves its own Entity:
 
 - **Broad, generic concepts** → one Entity. A `sword` Entity covers iron swords, steel swords, diamond swords. Variations in material, stats, and visuals go in Manifestations.
-- **Iconic or distinct-class concepts** → separate Entity. A `master-sword` or `energy-sword` gets its own Entity when it has persistent lore, identity, or core mechanics that are not reducible to stat variants.
+- **Mechanically distinct concepts** → separate Entity via the four-test rubric. An `energy-sword` has a property cluster ({plasma blades, battery, lunge, energy depletion}) distinct from `sword`. Test 4 (Mechanical Signature) catches these without requiring cultural recognition.
+- **Culturally persistent concepts** → separate Entity via the Iconicity Threshold. A `master-sword` is mechanically just a strong sword, but 40 years of Zelda lore, cross-media recognition, and cultural identity make it a distinct kind. Filing it under `sword` would lose something meaningful.
 
-The test: if removing the specific identity would lose something meaningful (lore, unique mechanics, cross-media recognition), it warrants a separate Entity.
+The Iconicity Threshold exists for things that lack mechanical distinctness but have sufficient cultural identity to constitute a distinct kind: persistent lore, cross-media recognition, and identity that would be lost if filed under a generic archetype.
 
 For a comprehensive, repeatable rubric — including the four-test framework (Verb Test, Cross-Game Test, Substitution Test, Mechanical Signature Test) and guidance on acquisition behavior, ammo taxonomy, decorations, and projectiles — see [Entity Abstraction Conventions](./entity-abstraction.md).
 
@@ -128,6 +129,6 @@ Each domain file provides worked examples and recommended patterns:
 
 ---
 
-*Part of the [Enduring Game Standard](https://github.com/enduring-game-standard). See [AEMS Standard](https://github.com/enduring-game-standard/aems-standard) for the core protocol, [RUNS](https://github.com/enduring-game-standard/runs-standard) for game execution, [MAPS Notation](https://github.com/enduring-game-standard/ludic-notation-standard) for design notation, and [WOCS](https://github.com/enduring-game-standard/wocs-standard) for coordination.*
+*Part of the [Enduring Game Standard](https://github.com/enduring-game-standard). See [AEMS Standard](https://github.com/enduring-game-standard/aems-schema) for the core protocol, [RUNS](https://github.com/enduring-game-standard/runs-spec) for game execution, [MAPS Notation](https://github.com/enduring-game-standard/maps-notation) for design notation, and [WOCS](https://github.com/enduring-game-standard/wocs-protocol) for coordination.*
 
 **MIT License** — Open for use, adaptation, and critique.
