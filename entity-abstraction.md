@@ -2,7 +2,7 @@
 
 These optional conventions provide a structured rubric for deciding when a game concept warrants its own AEMS Entity versus when it should be a Manifestation of a broader archetype. They extend the [Iconicity Threshold](./README.md#5-iconicity-threshold-for-entities) with cross-domain reasoning and a repeatable four-test framework.
 
-The rubric applies to all AEMS domains — weapons, enemies, items, environment objects, projectiles, NPCs, and any future category. It is domain-neutral by design: the same tests that determine whether a sword warrants its own Entity also determine whether a health pickup, a locked door, or a decorative pillar does.
+The rubric applies to all AEMS domains — weapons, enemies, items, environment objects, projectiles, NPCs, game pieces, playing cards, and any future category across any medium. It is domain-neutral and medium-neutral by design: the same tests that determine whether a sword warrants its own Entity also determine whether a health pickup, a locked door, a chess piece, or a playing card does.
 
 ## The Problem
 
@@ -34,6 +34,54 @@ Seven independent lines of evidence converge on this boundary:
 
 > [!IMPORTANT]
 > **Why this matters for the rubric.** The four tests below can produce false positives when applied to mechanics. A maze has a verb ("solve"), cross-game presence (mazes appear everywhere), substitutability (any game could have a maze), and a property cluster ({grid, entrance, exit, find path}). It passes 4/4. But a maze is not a thing — it is a rule structure. The scope boundary catches this *before* the tests are applied: if the candidate is a process rather than an object, it is a MAPS Pattern, and the four tests do not apply.
+
+## Medium Transparency
+
+The medium through which a game concept is delivered — card, die, token, tile, miniature, sprite, digital widget — is **never** the Personality of that concept. It is always the Matter facet (Ranganathan), an accident rather than the substance (Aristotle). Entity d-tags must never include a medium suffix (`-card`, `-die`, `-token`, `-tile`) unless the object has no identity apart from the medium.
+
+This principle is implicit in Ranganathan's faceted classification — Matter is Manifestation-level — but it requires explicit statement because medium-encoding is the most common source of false Entities when analyzing board games, card games, or any domain where the physical delivery mechanism is prominent.
+
+### The Diagnostic Test
+
+> *"Would this thing's identity persist unchanged if the medium changed?"*
+
+If the answer is yes, the medium is Matter and belongs on the Manifestation. If the answer is no — if the medium IS the identity — then the medium is fused with Personality and the object is genuinely identity-bearing.
+
+| Thing | Change Medium | Identity Persists? | Verdict |
+|-------|--------------|-------------------|---------|
+| Ace of Spades | Physical card → digital → clay tile | ✅ Still "Ace of Spades" | **Identity-bearing** — rank + suit ARE the Personality |
+| HEAT Speed-3 Card | Card → die face → digital counter | ✅ Still "3 units of movement" | **Resource-bearing** — card is Matter |
+| MTG Lightning Bolt | Card → digital cast → spoken spell | ✅ Still "Lightning Bolt" | **Identity-bearing** — named, iconic entity |
+| Dominion Curse | Card → debuff icon → penalty cube | ✅ Still "accumulated hindrance" | **Resource-bearing** — card is Matter |
+| Yomi Punch Card | Card → button press → mouse click | ✅ Still "attack" | **Resource-bearing** — card delivers an action |
+
+### Why This Matters
+
+Without medium transparency, the rubric breaks across media. Yomi (a card game) and Street Fighter (a video game) descend from the same fighting game lineage — David Sirlin explicitly designed Yomi to translate Street Fighter mechanics to cards. A punch in Street Fighter (button input → animation → damage) and a Punch Card in Yomi (play face-down → reveal → damage) are the same Entity: `attack`. Creating `punch-card` as distinct from `punch` doubles the namespace for no ontological gain.
+
+The same trap appears in any cross-medium analysis. A board game's "Speed Card" and a video game's "speed powerup" and a die roll's "movement points" are all Manifestations of the same concept (movement resource) in different Matter. A board game's "penalty card" and a video game's "debuff stack" and a tabletop RPG's "fatigue token" are all the same `hindrance` Entity in different Matter.
+
+Six convergent lines of evidence establish the principle:
+
+| Domain | Principle | Implication |
+|--------|-----------|-------------|
+| **Ranganathan** (library science) | Matter facet ≠ Personality facet | Card/die/token/sprite = Material, not identity |
+| **Aristotle** (metaphysics) | Substance vs. accident | A chair is a chair whether wood or metal; a movement resource is a movement resource whether cardboard or pixels |
+| **Ludii** (formal game theory) | Equipment = {pieces, cards, dice} as functionally equivalent component types | Medium is a container property, not component identity |
+| **Substrate independence** (philosophy) | Informational patterns persist across substrates | "3 movement points" is substrate-independent |
+| **Music** (notation) | A note is substrate-independent | Middle C on piano = Middle C on violin; the instrument is Matter |
+| **Economics** | Currency is medium-independent | A dollar is a dollar whether paper, coin, or digital |
+
+### The Exception: Identity-Bearing Media
+
+Standard playing cards are the canonical exception. The Ace of Spades has no identity *beyond* its medium — rank and suit constitute the complete Personality. There is nothing "behind" the card that the card is delivering. The same applies to Chess pieces: a bishop's identity (diagonal-moving piece) is inseparable from its role in the game of Chess. These objects are identity-bearing: the medium and the Personality are fused.
+
+The test is simple: **does stripping the medium leave a residual identity?** A HEAT Speed-3 Card stripped of card-ness leaves "3 movement points" — residual identity exists, so the card is Matter. An Ace of Spades stripped of card-ness leaves... nothing recognizable. The rank+suit system IS the identity.
+
+When in doubt, apply the Yomi/Street Fighter test: if the same concept crosses from a card game to a video game (or vice versa), the medium is not Personality.
+
+> [!CAUTION]
+> **Common trap.** When analyzing board games or card games, the physical medium is salient — you hold the cards, you move the tokens. This salience tempts analysts into naming Entities after the medium: `speed-card`, `penalty-card`, `upgrade-card`. Strip the medium first. Name the Entity for its Personality: `movement-resource`, `hindrance`, `power-up`. If the resulting name matches an Entity that already exists in video game analysis, that's not a coincidence — it's convergent evolution proving the Entity is real.
 
 ## Theoretical Foundations
 
@@ -82,6 +130,10 @@ The player's primary interaction verb determines the mechanical pattern. Things 
 | `approach → unlocks passage` | Key | DOOM keycard, Zelda key |
 | `find → possess → triggers game completion` | Quest Objective | Amulet of Yendor, Triforce (assembled) |
 | `find → collect N → unlocks zone/ability` | Progression Collectible | Power Stars, Shine Sprites, Korok Seeds |
+| `receive → inspect → validate/reject` | Inspection Target | Papers Please passport, detective case evidence |
+| `draw → hold → play/discard` | Drawn Action | Poker card, MTG creature, Dominion action, Slay the Spire card |
+| `select → move to position → (capture/interact)` | Piece | Chess knight, checkers king, Shogi tile, XCOM soldier, Fire Emblem unit |
+| `select from supply → place → (control/capture)` | Placed Token | Go stone, Othello disc, Connect Four chip, Catan settlement |
 
 The Verb Test reveals the *type* of entity. Two things with the same verb but different effects (e.g., pickup-instant-heal vs. pickup-instant-armor) are different Entities. Two things with the same effect but different verbs (e.g., instant-heal-pickup vs. stored-heal-consumable) are the **same Entity** — the verb difference is an Energy facet and belongs on the Manifestation.
 
@@ -97,6 +149,7 @@ If independent designers in independent contexts arrive at the same concept, it 
 | Shotgun | DOOM, Quake, Halo, Half-Life, RE4, … | ✅ Universal Entity |
 | Night vision | DOOM, Splinter Cell, Arma, Tarkov, CoD, … | ✅ Universal Entity |
 | Explosive barrel | DOOM, Half-Life, RE4, Far Cry, Halo, … | ✅ Universal Entity |
+| Fighter character | Street Fighter, Tekken, Yomi (card game), BattleCON (board game), D&D (tabletop) | ✅ Universal Entity |
 | BFG 9000 | DOOM exclusively | ❌ Game-specific Entity |
 | "Tall green DOOM pillar" | DOOM exclusively | ❌ Manifestation of `obstacle-pillar` |
 
@@ -245,16 +298,19 @@ Projectiles rarely warrant individual Entities. Instead, group them by their mec
 
 Each game's specific projectiles become Manifestations of the appropriate cluster Entity.
 
-### Games Without Traditional Entities
+### Games with Thin Entity Layers
 
-Many acclaimed games have few or no combat entities — no weapons, no enemies, no inventory. The rubric still applies: test each *thing* in the game world. But expect a thin Entity layer. The richness of these games lives in their mechanical grammar (MAPS Patterns), not their object taxonomy (AEMS Entities).
+Some games have few Entity types — their depth lives in mechanical grammar (MAPS Patterns), not object taxonomy (AEMS Entities). The rubric still applies: test each *thing* in the game world. But expect a thin Entity layer. This is the correct answer, not a sign that the rubric failed.
 
 | Game | AEMS Entities (Things) | MAPS Patterns (Mechanics) |
 |------|----------------------|-------------------------|
+| Chess | chess-king, chess-queen, chess-rook, chess-bishop, chess-knight, chess-pawn | turn-alternation, piece-movement, capture, check, checkmate, castling, en-passant, promotion |
+| Go | go-stone, go-board | stone-placement, capture-by-surrounding, ko-rule, territory-scoring |
 | The Witness | puzzle-panel, locked-door, audio-log, vehicle | maze, constraint-separation, symmetry, shape-fitting, environmental-perception |
 | Tetris | playfield | shape-fitting, line-clearing |
 | Braid | player-character, key, door, puzzle-piece | time-rewind, time-immunity, shadow-clone |
 | Portal | player-character, portal-gun, companion-cube, turret | portal-traversal, momentum-conservation |
+| HEAT: Pedal to the Metal | vehicle, speed-limit-zone, finish-line, hindrance, condition-modifier | gear-shifting, heat-management, cornering, slipstream, boost, cooldown, deck-cycling |
 
 A thin Entity layer is the correct answer for these games, not a sign that the rubric failed. A puzzle panel is a thing (Entity). The constraint-separation rule governing what the player draws on it is a mechanic (MAPS Pattern). A time-rewind power is a mechanic (MAPS Pattern), not a thing the player picks up and stores.
 
@@ -268,9 +324,11 @@ The rubric's theoretical foundations converge independently across multiple doma
 |--------|----------|-----------------|
 | **Philosophy** (HPC theory) | Kind = property cluster, not essence | Entity = stable property cluster across games |
 | **Library science** (Ranganathan) | Personality facet = Entity; Energy/Matter = contextual | Only "what it is" goes on Entity; "how it works" is Manifestation |
+| **Aristotle** (substance/accident) | Substance persists through accidental change | A chair is a chair whether wood or metal; medium is accidental, not substantial |
 | **Biology** (lumpers vs. splitters) | Right granularity depends on purpose | AEMS optimizes for cross-game discoverability → lump |
 | **Game design** (Björk/Holopainen) | Pickup, Consumable, Equipment are distinct patterns | These are verb clusters, belonging to the Energy facet → Manifestation |
-| **Formal game theory** (Ludii) | G = ⟨Mode, Equipment, Rules⟩ | Equipment (AEMS) and Rules (MAPS) are formally distinct categories |
+| **Formal game theory** (Ludii) | G = ⟨Mode, Equipment, Rules⟩; Equipment = {pieces, cards, dice} | Equipment and Rules are distinct; pieces/cards/dice are functionally equivalent |
+| **Substrate independence** (philosophy) | Informational patterns persist across substrates | A game concept retains identity regardless of physical medium |
 | **DOOM modding** (ZDoom class hierarchy) | Actor > Inventory > Weapon/Ammo/Powerup | 25 years of community practice validates category-level splitting |
 | **Theater** (prop classification) | Set dressing, hand prop, personal prop | Interaction pattern determines classification |
 | **D&D** (item taxonomy) | "Wondrous Items" = honest catch-all | Any taxonomy needs a catch-all; minimize what falls into it |
