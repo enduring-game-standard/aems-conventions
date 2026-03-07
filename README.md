@@ -43,14 +43,15 @@ Prefix Manifestations with style or theme indicators:
 
 Collisions are avoided through Nostr pubkey identity: two publishers can use the same `d`-tag prefix, but their events are distinguishable by pubkey.
 
-### 3. Grouping Tags
+### 3. Grouping Tags (Manifestations Only)
 
-Use lightweight tags for cross-client filtering:
+Use lightweight tags on **Manifestations** for cross-client filtering:
 - `["category", "..."]` — broad domain (e.g., "weapon", "enemy", "playing-card")
 - `["type", "..."]` / `["subtype", "..."]` — hierarchical classification (e.g., "melee" / "bladed")
 - `["origin", "..."]` — lore or franchise source (e.g., "zelda", "doom")
+- `["game", "..."]` — specific game (e.g., "minecraft", "doom-classic")
 
-These tags enable clients to query for "all weapons" or "all entities from Zelda" without parsing event content.
+Entities have **no tags** beyond `d` and `name`. Discovery works by searching Manifestations by tags, then reducing to their parent Entities. See [Entity Abstraction Conventions](./entity-abstraction.md) for the rationale.
 
 ### 4. Property Consistency in Manifestation Content
 
@@ -64,17 +65,15 @@ Where possible, use common property names in Manifestation `content` across doma
 
 Consistent property names matter because they enable cross-client rendering and shared processing. A client that knows how to display `image_url` can render entities from any publisher that follows this convention, without game-specific adapters.
 
-### 5. Iconicity Threshold for Entities
+### 5. IP Boundary Rule
 
-Not every variant deserves its own Entity:
+Not every concept deserves its own Entity:
 
 - **Broad, generic concepts** → one Entity. A `sword` Entity covers iron swords, steel swords, diamond swords. Variations in material, stats, and visuals go in Manifestations.
 - **Mechanically distinct concepts** → separate Entity via the four-test rubric. An `energy-sword` has a property cluster ({plasma blades, battery, lunge, energy depletion}) distinct from `sword`. Test 4 (Mechanical Signature) catches these without requiring cultural recognition.
-- **Culturally persistent concepts** → separate Entity via the Iconicity Threshold. A `master-sword` is mechanically just a strong sword, but 40 years of Zelda lore, cross-media recognition, and cultural identity make it a distinct kind. Filing it under `sword` would lose something meaningful.
+- **IP-specific concepts** → **always Manifestations**, never Entities. A `master-sword` is mechanically just a strong sword and is trademarked by Nintendo. It becomes a Manifestation of `sword`. The Pinky Demon becomes a Manifestation of `monster`. The BFG 9000 becomes a Manifestation of `super-weapon`.
 
-The Iconicity Threshold exists for things that lack mechanical distinctness but have sufficient cultural identity to constitute a distinct kind: persistent lore, cross-media recognition, and identity that would be lost if filed under a generic archetype.
-
-For a comprehensive, repeatable rubric — including the four-test framework (Verb Test, Cross-Game Test, Substitution Test, Mechanical Signature Test) and guidance on acquisition behavior, ammo taxonomy, decorations, and projectiles — see [Entity Abstraction Conventions](./entity-abstraction.md).
+Entities are IP-agnostic commons infrastructure. If the name is owned by someone, it cannot be an Entity. See [Entity Abstraction Conventions](./entity-abstraction.md) for the full IP Boundary Principle and the four-test rubric.
 
 ## Example: Convention-Compliant Events
 
@@ -86,10 +85,7 @@ A generic sword Entity and a game-specific Manifestation, following all five con
   "kind": 30050,
   "tags": [
     ["d", "sword"],
-    ["name", "Sword"],
-    ["category", "weapon"],
-    ["type", "melee"],
-    ["subtype", "bladed"]
+    ["name", "Sword"]
   ],
   "content": {
     "description": "A handheld bladed weapon consisting of a long blade attached to a hilt, used for slashing or thrusting."
@@ -104,6 +100,9 @@ A generic sword Entity and a game-specific Manifestation, following all five con
   "tags": [
     ["d", "minecraft:iron-sword"],
     ["entity", "<sword_entity_id>", "sword"],
+    ["category", "weapon"],
+    ["type", "melee"],
+    ["subtype", "bladed"],
     ["game", "minecraft"]
   ],
   "content": {
@@ -116,16 +115,14 @@ A generic sword Entity and a game-specific Manifestation, following all five con
 }
 ```
 
-The Entity is universal and immutable. The Manifestation is scoped to Minecraft, references the Entity via provenance tag, uses namespaced `d`-tag, and follows common property names. A different game can publish its own Manifestation of the same Entity with entirely different stats and visuals.
+The Entity is universal, immutable, and tag-free. The Manifestation is scoped to Minecraft, references the Entity via provenance tag, uses namespaced `d`-tag, follows common property names, and carries all grouping tags. A different game can publish its own Manifestation of the same Entity with entirely different stats, visuals, and tags.
 
 ## Domain-Specific Conventions
 
 Each domain file provides worked examples and recommended patterns:
 
-- [entity-abstraction.md](./entity-abstraction.md) — Four-test rubric for Entity vs. Manifestation decisions, with cross-domain foundations.
+- [entity-abstraction.md](./entity-abstraction.md) — Four-test rubric for Entity vs. Manifestation decisions, IP Boundary Principle, Entities-as-Roles composition model, and open questions.
 - [playing-cards.md](./playing-cards.md) — Standard decks, rendering properties, composition.
-- [weapons.md](./weapons.md) — Generic vs. legendary/distinct weapons, material variants, cross-genre adaptation.
-- [enemies.md](./enemies.md) — Archetypal monsters across game eras, behavioral properties.
 
 ---
 

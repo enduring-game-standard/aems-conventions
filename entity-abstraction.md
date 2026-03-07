@@ -1,6 +1,6 @@
 # Entity Abstraction Conventions
 
-These optional conventions provide a structured rubric for deciding when a game concept warrants its own AEMS Entity versus when it should be a Manifestation of a broader archetype. They extend the [Iconicity Threshold](./README.md#5-iconicity-threshold-for-entities) with cross-domain reasoning and a repeatable four-test framework.
+These optional conventions provide a structured rubric for deciding when a game concept warrants its own AEMS Entity versus when it should be a Manifestation of a broader archetype. They provide cross-domain reasoning and a repeatable four-test framework, grounded in the principle that Entities are IP-agnostic named roles in the commons.
 
 The rubric applies to all AEMS domains — weapons, enemies, items, environment objects, projectiles, NPCs, game pieces, playing cards, and any future category across any medium. It is domain-neutral and medium-neutral by design: the same tests that determine whether a sword warrants its own Entity also determine whether a health pickup, a locked door, a chess piece, or a playing card does.
 
@@ -150,10 +150,10 @@ If independent designers in independent contexts arrive at the same concept, it 
 | Night vision | DOOM, Splinter Cell, Arma, Tarkov, CoD, … | ✅ Universal Entity |
 | Explosive barrel | DOOM, Half-Life, RE4, Far Cry, Halo, … | ✅ Universal Entity |
 | Fighter character | Street Fighter, Tekken, Yomi (card game), BattleCON (board game), D&D (tabletop) | ✅ Universal Entity |
-| BFG 9000 | DOOM exclusively | ❌ Game-specific Entity |
+| BFG 9000 | DOOM exclusively | ❌ Manifestation of a broader archetype (e.g., `super-weapon`) |
 | "Tall green DOOM pillar" | DOOM exclusively | ❌ Manifestation of `obstacle-pillar` |
 
-The Cross-Game Test identifies natural kinds via *convergent evolution* — independent designers arriving at the same concept independently. A different kind of evidence exists: *franchise persistence*. An Octorok appears in 20+ Zelda titles across 40 years but zero non-Zelda games. It fails Cross-Game strictly, yet clearly warrants an Entity. Franchise persistence proves *cultural durability*, not convergent evolution — a different mechanism establishing the same conclusion. The 3/4 scoring rule already handles this: franchise icons typically pass the Verb, Substitution, and Mechanical Signature tests while failing Cross-Game, yielding 3/4 and Entity status. The Iconicity Threshold (see [README §5](./README.md#5-iconicity-threshold-for-entities)) provides the formal justification.
+The Cross-Game Test identifies natural kinds via *convergent evolution* — independent designers arriving at the same concept independently. Franchise persistence (e.g., an Octorok appearing in 20+ Zelda titles) does not establish Entity status; it establishes cultural significance, which is a Manifestation-level property. A concept that appears in only one franchise is a Manifestation of a broader structural Entity, regardless of how many installments it spans.
 
 ### Test 3: The Substitution Test
 
@@ -161,7 +161,7 @@ The Cross-Game Test identifies natural kinds via *convergent evolution* — inde
 
 The AEMS standard states: *"A 'Health Potion' Entity might become a 'Flask' in Dark Souls, a 'Potion' in Final Fantasy VII, or a 'Splash Potion' in Minecraft."* If this substitution makes sense — if a developer could use the Entity as a scaffold for their game's version — the Entity is at the right abstraction level.
 
-If substitution breaks ("swapping DOOM's BFG 9000 into Minecraft" doesn't produce a meaningful analog), the thing may need its own Entity.
+If substitution breaks ("swapping DOOM's BFG 9000 into Minecraft" doesn't produce a meaningful analog), the concept is too game-specific for Entity status. Abstract upward until substitution works: if a `super-weapon` substitutes meaningfully but `bfg-9000` does not, then `super-weapon` is the Entity and BFG 9000 is its Manifestation.
 
 ### Test 4: The Mechanical Signature Test
 
@@ -227,10 +227,7 @@ The Verb Test is the discriminator. Interactive environment objects have verb cl
   "kind": 30050,
   "tags": [
     ["d", "obstacle-pillar"],
-    ["name", "Pillar"],
-    ["category", "environment"],
-    ["type", "obstacle"],
-    ["subtype", "structural"]
+    ["name", "Pillar"]
   ],
   "content": {
     "description": "A solid vertical structural element that blocks movement and projectiles."
@@ -238,31 +235,27 @@ The Verb Test is the discriminator. Interactive environment objects have verb cl
 }
 ```
 
-### Iconicity vs. Mechanical Archetype
+### IP Boundary Principle
 
-Some things are simultaneously a universal mechanical pattern and an iconic specific thing. The Triforce in Zelda functions mechanically as a `quest-macguffin` (collect N pieces to access the final area — a pattern shared by Mario 64 Stars, Sonic's Chaos Emeralds, and Banjo-Kazooie's Jiggies). But the Triforce also has 40 years of persistent lore, cross-media recognition, and identity that would be *lost* if filed under `quest-macguffin`.
+**Entities are IP-agnostic infrastructure.** No Entity d-tag should name a trademarked character, franchise-specific item, or copyrighted concept. Entity d-tags describe *what something is* in universal terms: `sword`, `monster`, `healing-item`, `projectile-fireball`. Franchise-specific identities — the Master Sword, the Pinky Demon, the BFG 9000 — are **always Manifestations**. They reference the generic Entity and carry the franchise attribution on the Manifestation.
 
-Ranganathan resolves this. The Personality facet is *what something fundamentally is*. The Triforce's Personality is "the Triforce" — a sacred golden relic of Hyrule. Its mechanical function as a collectible progression gate is the Energy facet (how the game uses it), which belongs on the Manifestation.
+This boundary follows the id Software precedent: the engine (RUNS) is open infrastructure; the WAD (AEMS content) separates generic data structures (Entities) from authored content (Manifestations). An Entity published to Nostr is commons infrastructure that any developer can build against without IP risk. A Manifestation carries the creative expression — and the responsibility.
 
-**The precedence rule:** When a thing has both a universal mechanical archetype (`quest-macguffin`) and an iconic identity that passes the Iconicity Threshold (`triforce`), the iconic identity takes precedence as the Entity. The mechanical pattern becomes a grouping tag (e.g., `["type", "quest-macguffin"]`) on the Entity, preserving discoverability without sacrificing identity.
+The rule is simple: **if the name is owned by someone, it cannot be an Entity.** Chess pieces and playing cards are fine (public domain). The Master Sword is not (Nintendo). The Triforce is not (Nintendo). The Pinky Demon is not (id Software / Bethesda). These become Manifestations of their structural Entities: `sword`, `quest-objective`, `monster`.
 
-```json
-{
-  "kind": 30050,
-  "tags": [
-    ["d", "triforce"],
-    ["name", "Triforce"],
-    ["category", "artifact"],
-    ["type", "quest-macguffin"],
-    ["origin", "zelda"]
-  ],
-  "content": {
-    "description": "A sacred golden relic composed of three triangles, each embodying Power, Wisdom, or Courage. Collecting its pieces is the central quest of the Zelda series."
-  }
-}
-```
+> [!IMPORTANT]
+> **Why this matters on Nostr.** Every Entity is a cryptographically signed, permanently attributable Nostr event. Publishing an Entity named `master-sword` creates a permanent commons-layer reference to Nintendo's IP. Any developer who then publishes a Manifestation against that Entity creates a provable, unforgeable link to trademarked content. The [Authorial Provenance Standard](../.github/profile/APS.md) makes this link stronger, not weaker. IP-agnostic Entities eliminate this risk entirely.
 
-This generalizes: the Master Sword is Entity `master-sword` with `["type", "melee"]`, not a Manifestation of `sword`. Ganon is Entity `ganon` with `["type", "boss"]`, not a Manifestation of `final-boss`. Whenever removing the specific identity would lose something meaningful, the identity is the Personality and the mechanical role is Energy.
+### Entities Have No Tags
+
+An Entity event contains only:
+- `d` — the Entity name (e.g., `sword`)
+- `name` — a human-readable label (e.g., `Sword`)
+- `content.description` — a plain-language description
+
+All grouping tags (`category`, `type`, `subtype`, `origin`, `game`) belong on **Manifestations**, not Entities. Discovery works by searching Manifestations by tags, then reducing to their parent Entities.
+
+This prevents Entities from accumulating an informal taxonomy that pretends to be formal. Tags on Entities create the same over-specificity problem as excessive Entity splitting — they narrow a classification that is supposed to be broad. If tags can arbitrarily narrow an Entity, you recreate the `charging-melee-demon` problem in a different form.
 
 ### Quest and Progression Items
 
@@ -273,13 +266,13 @@ Quest objectives and progression collectibles are universal archetypes that pass
 | `quest-objective` | {unique, triggers completion, carried, game-ending} | Amulet of Yendor, assembled Triforce |
 | `progression-collectible` | {multiple instances, countable, gate-threshold, zone-unlocking} | Power Stars, Shine Sprites, Korok Seeds, Chaos Emeralds |
 
-These archetypes follow the same Iconicity rules as every other domain. A Power Star is a Manifestation of `progression-collectible`. But when a progression collectible accumulates persistent lore, cross-media recognition, and cultural identity — the Chaos Emeralds, the Triforce pieces — the Iconicity Threshold applies and the iconic identity becomes the Entity:
+All franchise-specific quest items and progression collectibles are Manifestations of these structural Entities:
 
-- **Chaos Emeralds** → Entity: `chaos-emerald` with `["type", "progression-collectible"]`, `["origin", "sonic"]`
-- **Korok Seeds** → Manifestation of `progression-collectible` (iconic within BotW/TotK but not at Iconicity Threshold)
-- **Amulet of Yendor** → Manifestation of `quest-objective` (iconic within roguelikes but not at Iconicity Threshold)
-
-A useful heuristic for this domain: **could you swap the object's identity for something else without changing the game's mechanical structure?** If swapping the Amulet of Yendor for a "Golden Crown" changes nothing about Rogue's gameplay, the identity is interchangeable — it's a Manifestation. If removing the Triforce from Zelda would alter the game's meaning and not just its theme, the identity is load-bearing — it's an Entity.
+- **Triforce** → Manifestation of `quest-objective`
+- **Chaos Emeralds** → Manifestation of `progression-collectible`
+- **Korok Seeds** → Manifestation of `progression-collectible`
+- **Amulet of Yendor** → Manifestation of `quest-objective`
+- **Power Stars** → Manifestation of `progression-collectible`
 
 ### Charged Devices
 
@@ -333,6 +326,56 @@ The rubric's theoretical foundations converge independently across multiple doma
 | **Theater** (prop classification) | Set dressing, hand prop, personal prop | Interaction pattern determines classification |
 | **D&D** (item taxonomy) | "Wondrous Items" = honest catch-all | Any taxonomy needs a catch-all; minimize what falls into it |
 
+
+## Entities as Named Roles
+
+An Entity is not a type in a hierarchy. It is a **named role** — a concept that a game object can participate in. This model is inspired by the Entity Component System (ECS) architecture dominant in modern game engines, where entities are composed of components rather than classified into types.
+
+A Manifestation can reference **multiple Entities** via multiple `entity` tags, declaring all the roles the game object participates in:
+
+```json
+{
+  "kind": 30051,
+  "tags": [
+    ["d", "minecraft:oak-plank"],
+    ["entity", "<building-block_id>", "building-block"],
+    ["entity", "<resource_id>", "resource"],
+    ["category", "material"],
+    ["game", "minecraft"]
+  ],
+  "content": {
+    "description": "A basic wooden plank used for building, crafting, and fuel."
+  }
+}
+```
+
+A receiving game reads the Entity references and picks the one(s) it understands. A building game sees `building-block` and imports a wall material. A crafting game sees `resource` and imports a crafting ingredient. The Manifestation says "this thing participates in all of these roles." The receiving game selects which roles it can serve.
+
+The Entity's purpose is **recognition**: a receiving game reads the Entity reference and says "I know that role. I can build a local version of this thing that fills that role." This is the core portability function — not taxonomy, not classification, but **making your digital stuff recognizable to any game that speaks the same language.**
+
+### Object-Entities vs. Agent-Entities
+
+Entity names fall into two natural categories:
+
+**Object-Entities** have identity independent of behavior. Nouns. A sword is a sword whether you swing it or display it on a wall. These are named for what they ARE: `sword`, `door`, `potion`, `tennis-racket`, `chess-rook`.
+
+**Agent-Entities** have identity defined by their role in gameplay. Verbs-as-nouns. An enemy IS what it does — strip the behavior and nothing remains. These are named for what role they FILL: `monster`, `boss`, `companion`, `merchant`.
+
+Agent-Entity names inevitably contain behavioral language. This is not AEMS/MAPS overlap — it is the recognition that for agents, identity and behavior are inseparable. The Entity names the ROLE ("monster"). MAPS describes the RULES that govern the role ("monsters chase when detected and attack when in range").
+
+## Open Questions
+
+The following questions are acknowledged as unresolved. They require further analysis across multiple game inventories before principled answers can emerge.
+
+1. **Multi-Entity cardinality.** How many Entity references should a Manifestation support? Unlimited risks making Entities functionally equivalent to tags. A principled cap has not been established.
+
+2. **Agent-Entity granularity.** Is `monster` the right Entity for all non-boss hostile creatures? Or should the Entity layer distinguish `melee-enemy`, `ranged-enemy`, `flying-enemy` as separate structural Entities? The correct granularity should emerge from applying the four-test rubric to multiple game inventories, not from armchair reasoning.
+
+3. **Constitutive vs. substitutable things.** Chess pieces are constitutive — remove a piece type and you have a different game. DOOM enemies are substitutable — replace any enemy and you still have DOOM. Does this distinction determine Entity structure, or merely explain naming conventions?
+
+4. **The AEMS/MAPS boundary for agents.** Entity names the ROLE. MAPS describes the RULES. But agent-Entity names like `boss` imply rules (phases, arenas, climactic encounter). How much behavioral implication is acceptable in an Entity name?
+
+5. **Referential vs. constructive Entities.** Object-Entities that correspond to real-world things (sword, tennis racket) have obvious, uncontroversial identity. Constructive Entities invented for gameworlds (super-weapon, collectible-creature) require abstraction from specific implementations. Should the rubric handle these differently, or is the four-test framework sufficient for both?
 
 ---
 
