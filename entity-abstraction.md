@@ -244,7 +244,7 @@ This boundary follows the id Software precedent: the engine (RUNS) is open infra
 The rule is simple: **if the name is owned by someone, it cannot be an Entity.** Chess pieces and playing cards are fine (public domain). The Master Sword is not (Nintendo). The Triforce is not (Nintendo). The Pinky Demon is not (id Software / Bethesda). These become Manifestations of their structural Entities: `sword`, `quest-objective`, `monster`.
 
 > [!IMPORTANT]
-> **Why this matters on Nostr.** Every Entity is a cryptographically signed, permanently attributable Nostr event. Publishing an Entity named `master-sword` creates a permanent commons-layer reference to Nintendo's IP. Any developer who then publishes a Manifestation against that Entity creates a provable, unforgeable link to trademarked content. The [Authorial Provenance Standard](../.github/profile/APS.md) makes this link stronger, not weaker. IP-agnostic Entities eliminate this risk entirely.
+> **Why this matters on Nostr.** Every Entity is a cryptographically signed, permanently attributable Nostr event. Publishing an Entity named `master-sword` creates a permanent commons-layer reference to Nintendo's IP. Any developer who then publishes a Manifestation against that Entity creates a provable, unforgeable link to trademarked content. The [PWNS extension](../.github/profile/PWNS.md) makes this link stronger, not weaker. IP-agnostic Entities eliminate this risk entirely.
 
 ### Entities Have No Tags
 
