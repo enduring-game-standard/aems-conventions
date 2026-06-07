@@ -126,6 +126,6 @@ Each domain file provides worked examples and recommended patterns:
 
 ---
 
-*Part of the [Enduring Game Standard](https://github.com/enduring-game-standard). See [AEMS Standard](https://github.com/enduring-game-standard/aems-schema) for the core protocol, [RUNS](https://github.com/enduring-game-standard/runs-spec) for game execution, [MAPS Notation](https://github.com/enduring-game-standard/maps-notation) for design notation, and [WOCS](https://github.com/enduring-game-standard/wocs-protocol) for coordination. Canonical acronym expansions live in the [EGS Glossary](https://github.com/enduring-game-standard/.github/blob/main/profile/GLOSSARY.md).*
+*Part of the [Enduring Game Standard](https://github.com/enduring-game-standard). See [AEMS Standard](https://github.com/enduring-game-standard/aems-schema) for the core protocol, [RUNS](https://github.com/enduring-game-standard/runs-spec) for game execution, [MAPS Notation](https://github.com/enduring-game-standard/maps-notation) for design notation, and [WOCS](https://github.com/enduring-game-standard/wocs-protocol) for coordination. Canonical acronym expansions live in the [EGS Glossary](https://github.com/enduring-game-standard/.github/blob/main/profile/README.md#glossary).*
 
 **MIT License** — Open for use, adaptation, and critique.

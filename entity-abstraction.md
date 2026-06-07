@@ -14,7 +14,7 @@ The right abstraction level is not obvious. A health-restoring item in DOOM (sti
 
 The rubric applies to **things** — objects a player possesses, encounters, or interacts with in a game world. Swords, health potions, locked doors, enemies, puzzle panels, audio logs, vehicles. These are AEMS Entities.
 
-The rubric does **not** apply to **mechanics** — rules governing how those things behave. Constraint-satisfaction logic, stamina-attack tradeoffs, time-rewind rules, portal-traversal physics. These are [MAPS Patterns](../ludic-notation-standard/README.md), not AEMS Entities. Mechanics describe *conversation structure* — the grammar that makes gameplay meaningful. They belong in the notation layer (cumulative craft), not the entity layer (durable substrate).
+The rubric does **not** apply to **mechanics** — rules governing how those things behave. Constraint-satisfaction logic, stamina-attack tradeoffs, time-rewind rules, portal-traversal physics. These are [MAPS Patterns](../maps-notation/README.md), not AEMS Entities. Mechanics describe *conversation structure* — the grammar that makes gameplay meaningful. They belong in the notation layer (cumulative craft), not the entity layer (durable substrate).
 
 The rubric also does not apply to **conditions** — states applied to things. Poison, blindness, confusion, paralysis, and fear are qualities or states in the Aristotelian sense: they inhere in substances rather than existing independently. In MAPS terms, they are States modified by Verbs. What *are* AEMS Entities are the **things that deliver conditions**: a Potion of Poison (consumable Entity), a Scroll of Confusion (scroll Entity), a monster with a paralysis attack (enemy Entity whose Manifestation specifies `special_attack: paralysis`). The delivery vehicle is the thing; the condition is the state change it causes.
 
@@ -379,6 +379,6 @@ The following questions are acknowledged as unresolved. They require further ana
 
 ---
 
-*Part of [AEMS Conventions](./README.md). See [AEMS Standard](https://github.com/enduring-game-standard/aems-standard) for the core protocol.*
+*Part of [AEMS Conventions](./README.md). See [AEMS Standard](https://github.com/enduring-game-standard/aems-schema) for the core protocol.*
 
 **MIT License** — Open for use, adaptation, and critique.
