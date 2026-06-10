@@ -82,7 +82,7 @@ A generic sword Entity and a game-specific Manifestation, following all five con
 **Entity (Universal Archetype)**
 ```json
 {
-  "kind": 30050,
+  "kind": "<AEMS Entity kind>",
   "tags": [
     ["d", "sword"],
     ["name", "Sword"]
@@ -96,7 +96,7 @@ A generic sword Entity and a game-specific Manifestation, following all five con
 **Manifestation (Game-Specific Implementation)**
 ```json
 {
-  "kind": 30051,
+  "kind": "<AEMS Manifestation kind>",
   "tags": [
     ["d", "minecraft:iron-sword"],
     ["entity", "<sword_entity_id>", "sword"],

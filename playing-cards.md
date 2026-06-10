@@ -36,7 +36,7 @@ Examples below:
 
 ```json
 {
-  "kind": 30051,
+  "kind": "<AEMS Manifestation kind>",
   "tags": [
     ["d", "text:ace-spades"],
     ["entity", "<stdcard_ace-spades_entity_id>", "stdcard:ace-spades"],

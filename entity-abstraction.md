@@ -183,7 +183,7 @@ A single Entity (e.g., `healing-item`) can have Manifestations that specify `acq
 
 ```json
 {
-  "kind": 30051,
+  "kind": "<AEMS Manifestation kind>",
   "tags": [
     ["d", "doom-classic:stimpack"],
     ["entity", "<entity_id>", "healing-item"],
@@ -224,7 +224,7 @@ The Verb Test is the discriminator. Interactive environment objects have verb cl
 
 ```json
 {
-  "kind": 30050,
+  "kind": "<AEMS Entity kind>",
   "tags": [
     ["d", "obstacle-pillar"],
     ["name", "Pillar"]
@@ -335,7 +335,7 @@ A Manifestation can reference **multiple Entities** via multiple `entity` tags, 
 
 ```json
 {
-  "kind": 30051,
+  "kind": "<AEMS Manifestation kind>",
   "tags": [
     ["d", "minecraft:oak-plank"],
     ["entity", "<building-block_id>", "building-block"],
