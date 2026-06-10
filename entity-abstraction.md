@@ -14,7 +14,7 @@ The right abstraction level is not obvious. A health-restoring item in DOOM (sti
 
 The rubric applies to **things** — objects a player possesses, encounters, or interacts with in a game world. Swords, health potions, locked doors, enemies, puzzle panels, audio logs, vehicles. These are AEMS Entities.
 
-The rubric does **not** apply to **mechanics** — rules governing how those things behave. Constraint-satisfaction logic, stamina-attack tradeoffs, time-rewind rules, portal-traversal physics. These are [MAPS Patterns](../maps-notation/README.md), not AEMS Entities. Mechanics describe *conversation structure* — the grammar that makes gameplay meaningful. They belong in the notation layer (cumulative craft), not the entity layer (durable substrate).
+The rubric does **not** apply to **mechanics** — rules governing how those things behave. Constraint-satisfaction logic, stamina-attack tradeoffs, time-rewind rules, portal-traversal physics. These are [MAPS Patterns](https://github.com/enduring-game-standard/maps-notation), not AEMS Entities. Mechanics describe *conversation structure* — the grammar that makes gameplay meaningful. They belong in the notation layer (cumulative craft), not the entity layer (durable substrate).
 
 The rubric also does not apply to **conditions** — states applied to things. Poison, blindness, confusion, paralysis, and fear are qualities or states in the Aristotelian sense: they inhere in substances rather than existing independently. In MAPS terms, they are States modified by Verbs. What *are* AEMS Entities are the **things that deliver conditions**: a Potion of Poison (consumable Entity), a Scroll of Confusion (scroll Entity), a monster with a paralysis attack (enemy Entity whose Manifestation specifies `special_attack: paralysis`). The delivery vehicle is the thing; the condition is the state change it causes.
 
@@ -244,7 +244,7 @@ This boundary follows the id Software precedent: the engine (RUNS) is open infra
 The rule is simple: **if the name is owned by someone, it cannot be an Entity.** Chess pieces and playing cards are fine (public domain). The Master Sword is not (Nintendo). The Triforce is not (Nintendo). The Pinky Demon is not (id Software / Bethesda). These become Manifestations of their structural Entities: `sword`, `quest-objective`, `monster`.
 
 > [!IMPORTANT]
-> **Why this matters on Nostr.** Every Entity is a cryptographically signed, permanently attributable Nostr event. Publishing an Entity named `master-sword` creates a permanent commons-layer reference to Nintendo's IP. Any developer who then publishes a Manifestation against that Entity creates a provable, unforgeable link to trademarked content. The [PWNS extension](../.github/profile/PWNS.md) makes this link stronger, not weaker. IP-agnostic Entities eliminate this risk entirely.
+> **Why this matters on Nostr.** Every Entity is a cryptographically signed, permanently attributable Nostr event. Publishing an Entity named `master-sword` creates a permanent commons-layer reference to Nintendo's IP. Any developer who then publishes a Manifestation against that Entity creates a provable, unforgeable link to trademarked content. The [PWNS extension](https://github.com/enduring-game-standard/.github/blob/main/profile/PWNS.md) makes this link stronger, not weaker. IP-agnostic Entities eliminate this risk entirely.
 
 ### Entities Have No Tags
 

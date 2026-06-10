@@ -2,6 +2,10 @@
 
 **Shared patterns for interoperable AEMS events.**
 
+🏠 **[EGS Overview](https://github.com/enduring-game-standard)** · 📦 **[AEMS](https://github.com/enduring-game-standard/aems-schema)** · 🎯 **[AEMS Conventions](https://github.com/enduring-game-standard/aems-conventions)** · 🔧 **[RUNS](https://github.com/enduring-game-standard/runs-spec)** · 📖 **[RUNS Library](https://github.com/enduring-game-standard/runs-library)** · ⚡ **[WOCS](https://github.com/enduring-game-standard/wocs-protocol)** · 🎼 **[MAPS](https://github.com/enduring-game-standard/maps-notation)** · 🎶 **[MAPS Library](https://github.com/enduring-game-standard/maps-library)** · ❓ **[FAQ](https://github.com/enduring-game-standard/.github/blob/main/profile/FAQ.md)** · 🔤 **[Glossary](https://github.com/enduring-game-standard/.github/blob/main/profile/README.md#glossary)**
+
+---
+
 These conventions are optional, community-maintained guidelines for structuring [AEMS](https://github.com/enduring-game-standard/aems-schema) events. They are not part of the core protocol. The standard defines the four event kinds and their architecture; these conventions define the shared vocabulary that helps independent implementations render and process the same entities consistently.
 
 Because AEMS events are plain-text Nostr events, conventions are discoverable via relay queries and publishable by anyone without permission. Adopting them is voluntary. Forking them is expected.
