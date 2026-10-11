@@ -110,7 +110,7 @@ Cross-game import is a spectrum:
 
 Trophies and refusals are correct, the way a chess Knight does nothing at a poker table. And
 **agent-entities** (`monster`, `boss`, a character like Samus) can be named for provenance but
-cannot carry their substance — behavior, which is MAPS/RUNS. An **ability** is the same. The
+cannot carry their substance, which is behavior owned by MAPS/RUNS. An **ability** is the same. The
 thing that grants it, such as the Scan orb, is a noun and can be named. The reveal rule is a
 Pattern and never belongs on an Entity. Importing Samus delivers her identity and her look,
 not her moveset; importing Scan delivers the orb, not the reveal-power.

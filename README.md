@@ -15,7 +15,7 @@
 ## What This Repo Is
 
 The [AEMS schema](https://github.com/enduring-game-standard/aems-schema) is the kernel:
-four addressable event kinds — Entity, Manifestation, Asset, State — the three parent
+four addressable event kinds (Entity, Manifestation, Asset, State), the three parent
 references between them, and addressability. Each event's address is its kind, its
 publisher's key, and its `d` tag, and the latest event at an address is current.
 Compliance is exactly that and nothing more. **Follow the schema and you are using
@@ -209,10 +209,10 @@ entirely different stats, art, and tags.
 
 Per-domain files carry worked examples and recommended patterns:
 
-- [entity-abstraction.md](./entity-abstraction.md) — what an Entity names (object-identity)
-  and what belongs on the Manifestation instead. It implements
+- [entity-abstraction.md](./entity-abstraction.md) says what an Entity names
+  (object-identity) and what belongs on the Manifestation instead. It implements
   [ADR-0002](./docs/adr/0002-entity-names-object-identity.md).
-- [playing-cards.md](./playing-cards.md) — a conceptual example for the French-suited
+- [playing-cards.md](./playing-cards.md) is a conceptual example for the French-suited
   52-card deck. It covers per-card Entities and where card data sits.
 
 ## Open questions
