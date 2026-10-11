@@ -15,8 +15,10 @@
 ## What This Repo Is
 
 The [AEMS schema](https://github.com/enduring-game-standard/aems-schema) is the kernel:
-four event kinds — Entity, Manifestation, Asset, State — and the provenance chain between
-them. Compliance is exactly that and nothing more. **Follow the schema and you are using
+four addressable event kinds — Entity, Manifestation, Asset, State — the three parent
+references between them, and addressability. Each event's address is its kind, its
+publisher's key, and its `d` tag, and the latest event at an address is current.
+Compliance is exactly that and nothing more. **Follow the schema and you are using
 AEMS.**
 
 This repo is the **conventions layer** above that kernel. A convention is a voluntarily
@@ -53,7 +55,7 @@ conventions only make the underlying events legible to whoever chooses to read t
 
 | Tier | Lives in | Binding? |
 |------|----------|----------|
-| **Protocol** — the four event kinds and the provenance chain | [aems-schema](https://github.com/enduring-game-standard/aems-schema) | Mandatory for compliance |
+| **Protocol** — the four event kinds, the three parent references, and addressability | [aems-schema](https://github.com/enduring-game-standard/aems-schema) | Mandatory for compliance |
 | **Conventions** — tag and property vocabularies, naming, namespacing | this repo | Optional, recommended |
 | **Ecosystem** — published Entities, Manifestations, decks, content | the commons (Nostr events) | Permissionless |
 
@@ -79,19 +81,21 @@ tags, and only a tag's first value. A relay filter never matches the third eleme
 ([aems-schema ADR-0010](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0010-what-the-substrate-guarantees.md)).
 
 The loose coupling this reference provides — a Manifestation extends an Entity it does not
-own — is what lets fan extensions and reskins exist without touching the original Entity.
+own — is what lets fan extensions and new interpretations exist without touching the
+original Entity.
 
 ### 2. Namespace with umbrella prefixes for readability
 
 Prefix a `d`-tag with the game or creator it is scoped to, so the name reads clearly:
 
 - Manifestations: `minecraft:iron-sword`, `botw:master-sword`, `{creator}:...`
-- Style or theme variants: `classic:`, `modern:`, `text:`
+- Style or theme Manifestations: `classic:`, `modern:`, `text:`
 
-Prefixes are **readability convenience, never identity**. Identity is cryptographic: a
-publisher's key plus the `d`-tag. Two publishers can use the same prefix and their events
-stay distinct, because references resolve by the signed event, not by the string. There is
-no blessed or "standard" namespace — a naming becomes broadly shared only by being widely
+Prefixes are **readability convenience, never identity**. An event's address is its kind,
+its publisher's key, and its `d`-tag. Two publishers can use the same prefix and their
+events stay distinct, because a reference names the publisher's key or the exact event,
+not the bare string.
+There is no blessed or "standard" namespace — a naming becomes broadly shared only by being widely
 referenced (convergence by use; see [aems-schema ADR-0007](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0007-an-entity-event-is-a-naming-not-the-concept.md)),
 never by wearing a prefix. A bare, unprefixed `d` (`sword`) is the convention for a naming
 intended as broadly shared.
@@ -133,8 +137,8 @@ without a per-publisher adapter:
 | Visual | `model`, `image_url`, `texture`, `sprite_front` |
 | Audio | `sound_attack`, `sound_death`, `sound_hit` |
 
-A client that knows how to read `image_url` can pull the art for entities from any
-publisher that follows the convention, with no game-specific code.
+A client that knows how to read `image_url` can pull the art from the Manifestations of
+any publisher that follows the convention, with no game-specific code.
 
 ### 5. Name the thing, and keep namings free of IP misrepresentation
 
