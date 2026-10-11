@@ -123,7 +123,7 @@ after it has fetched the events
 ([aems-schema ADR-0010](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0010-what-the-substrate-guarantees.md),
 item 8). A convention that wants relay-side filtering needs a single-letter tag. As a
 conceptual example only, a publisher could add `["t", "weapon"]` alongside `category`.
-No convention here adopts a single-letter tag yet.
+No convention here adopts a single-letter tag yet (see [Open questions](#open-questions)).
 
 ### 4. Reuse common property names
 
@@ -210,11 +210,34 @@ entirely different stats, art, and tags.
 
 Per-domain files carry worked examples and recommended patterns:
 
-- [entity-abstraction.md](./entity-abstraction.md) — guidance for deciding when a concept
-  is worth its own Entity naming versus a Manifestation of a broader one. *(Work in
-  progress.)*
-- [playing-cards.md](./playing-cards.md) — standard decks, rendering properties,
-  composition.
+- [entity-abstraction.md](./entity-abstraction.md) — what an Entity names (object-identity)
+  and what belongs on the Manifestation instead. It implements
+  [ADR-0002](./docs/adr/0002-entity-names-object-identity.md).
+- [playing-cards.md](./playing-cards.md) — a conceptual example for the French-suited
+  52-card deck. It covers per-card Entities and where card data sits.
+
+## Open questions
+
+No convention here covers these yet. The schema leaves them open too.
+
+- **Transfer.** An Asset's address includes its owner's key, so a new owner cannot publish
+  at the old address. A transfer produces a new Asset under the new owner's key. No
+  convention yet links the new Asset to the old one, or to the old Asset's State
+  ([aems-schema ADR-0010](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0010-what-the-substrate-guarantees.md),
+  item 7). Until one exists, no document here cites a transfer as evidence.
+- **State history.** The kernel promises the current event at an address, not its earlier
+  versions. Relays may discard older versions. A history exists only where someone archives
+  it, or where a publisher gives each State its own address. Which practice to recommend is
+  open (ADR-0010, item 3).
+- **State vocabulary.** No convention names what a State carries. Early schema drafts
+  sketched `charges_remaining` and `condition` State properties and an `acquired` tag on the
+  Asset. Those left the schema and landed nowhere.
+- **Relay-side classification.** Classification tags like `category` and `game` filter on
+  the client (#3). Which single-letter tag, if any, should carry classification for
+  relay-side queries is open (ADR-0010, item 8).
+- **Smaller vocabulary gaps.** No convention yet covers typed property values, a display
+  name on a Manifestation, or a readable `d` value on `manifestation` and `asset`
+  references (#1 covers only the `entity` reference).
 
 ---
 
