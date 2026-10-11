@@ -27,9 +27,9 @@ design: they prescribe, recommend one shape over another, and render verdicts. W
 voluntary is *adopting* them. Ignoring every convention here is still compliant AEMS — the
 way a taped-up ball is still soccer. Forking them is expected.
 
-Because AEMS events are plain-text Nostr events, conventions are discoverable by relay
-query and publishable by anyone without permission. No one ratifies them; a convention
-earns its standing only by being adopted.
+The conventions themselves are prose in this repo, not events. Anyone can write or fork one
+without permission. No one ratifies them. A convention earns its standing only when
+publishers adopt it.
 
 ## Why Conventions?
 
@@ -38,9 +38,9 @@ is deliberate. But for two independent clients to read the same deck of cards �
 same weapon — without writing custom parsing for every publisher, they need shared
 assumptions about how those events are structured. Conventions provide them:
 
-- **Discoverability** — consistent tags and namespacing make entities queryable across
-  clients.
-- **Consistency** — common property names let clients read and process entities from
+- **Discoverability** — consistent tag names and values let clients find related events
+  from many publishers.
+- **Consistency** — common property names let clients read and process events from
   different publishers without custom parsing.
 - **Flexibility** — games and clients adopt, ignore, or fork any convention. Variation
   across implementations is expected, not exceptional.
@@ -66,12 +66,17 @@ These patterns apply broadly across AEMS events.
 The schema already requires every Manifestation to reference at least one parent Entity —
 this is a kernel rule, not a convention, and it holds whether or not you adopt anything
 here. The *convention* is to make that reference legible: alongside the Entity's
-machine reference, include its human-readable `d` value so the event can be read and
-relay-queried without resolving the parent first.
+machine reference, include its human-readable `d` value so a person reading the event
+knows the parent without resolving it first.
 
 ```json
 ["entity", "<entity reference>", "<entity d value>"]
 ```
+
+The tag name `entity` is a placeholder. The schema has not pinned the reference encoding
+yet. The readable `d` value helps people, not queries. Relays index only single-letter
+tags, and only a tag's first value. A relay filter never matches the third element
+([aems-schema ADR-0010](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0010-what-the-substrate-guarantees.md)).
 
 The loose coupling this reference provides — a Manifestation extends an Entity it does not
 own — is what lets fan extensions and reskins exist without touching the original Entity.
@@ -93,8 +98,8 @@ intended as broadly shared.
 
 ### 3. Put classification on Manifestations
 
-Grouping tags exist for cross-event discovery — they are how a client queries relays for
-"all weapons" or "everything from this game." Carry them on **Manifestations**:
+Grouping tags let a client sort events into "all weapons" or "everything from this game."
+Carry them on **Manifestations**:
 
 - `["category", "..."]` — broad domain (`weapon`, `enemy`, `playing-card`)
 - `["type", "..."]` / `["subtype", "..."]` — hierarchical classification (`melee` / `bladed`)
@@ -104,9 +109,17 @@ Grouping tags exist for cross-event discovery — they are how a client queries 
 An Entity carries only its naming — `d`, `name`, and a `content` description. An Entity is
 a dictionary entry: it carries the word and its definition, not the shelving codes a
 library files it under. Classification is what the *users* of a naming do with it, so it
-lives on the Manifestation. Discovery works by querying Manifestations by tag, then reading
+lives on the Manifestation. Discovery works by finding Manifestations by tag, then reading
 up the chain to their parent Entities. See
 [entity-abstraction.md](./entity-abstraction.md) for the reasoning.
+
+These tag names have more than one letter, and relays do not index them. A relay answers
+a query by kind or by author. The client then filters on `category` or `game` locally,
+after it has fetched the events
+([aems-schema ADR-0010](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0010-what-the-substrate-guarantees.md),
+item 8). A convention that wants relay-side filtering needs a single-letter tag. As a
+conceptual example only, a publisher could add `["t", "weapon"]` alongside `category`.
+No convention here adopts a single-letter tag yet.
 
 ### 4. Reuse common property names
 
