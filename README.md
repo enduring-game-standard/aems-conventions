@@ -143,11 +143,12 @@ any publisher that follows the convention, with no game-specific code.
 
 Name an Entity for what a thing *is*. Ownerless concepts like `sword`, `potion`, and
 `monster` are Entities. Authored concepts like `master-sword`, `link`, and `cloud` are
-Entities too. The protocol treats both the same, and the signature carries the authorship
+Entities too. The protocol treats both the same. Readers recognize authorship by whose
+signature a naming carries
 ([aems-schema ADR-0007](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0007-an-entity-event-is-a-naming-not-the-concept.md),
 2026-06-13 Amendment). A use like `healing-item` names what a thing is *for*, so it is a
-Manifestation tag value (#3), not an Entity. A game's interpretation is a **Manifestation**. Breath of the Wild's
-Master Sword is `botw:master-sword`, and it references both `master-sword` and `sword`.
+Manifestation tag value (#3), not an Entity. A game's interpretation is a
+**Manifestation**. Breath of the Wild's Master Sword is `botw:master-sword`, and it references both `master-sword` and `sword`.
 
 The convention is to keep namings free of IP *misrepresentation*. Do not pass off a
 non-author's naming of an authored concept as the author's. Anyone may name `link`, and
