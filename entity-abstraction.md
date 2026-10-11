@@ -13,13 +13,13 @@ ball is still soccer). The reasoning trail is in
 > or *how it behaves*, lives elsewhere.**
 
 An Entity is a **noun for a thing**: `sword`, `potion`, `flask`, `fireball`, `gem`. It is the
-durable spine cross-game recognition rides on — the only part of a thing that transfers
-unchanged. Three things are *not* object-identity and never belong on an Entity:
+durable spine cross-game recognition rides on — the only part of a thing that carries
+over unchanged. Three things are *not* object-identity and never belong on an Entity:
 
 | Not an Entity | What it actually is | Where it lives |
 |---|---|---|
 | **Use / role** — `weapon`, `healing-item`, `super-weapon`, `cooking-tool` | what the thing is *for*, which varies by game and receiver | Manifestation `category`/`type` tags |
-| **Mechanic / interaction pattern** — `consumable`, `pickup`, `scan` (the ability) | a rule — *how* a verb resolves | a [MAPS Pattern](https://github.com/enduring-game-standard/maps-notation) |
+| **Mechanic / interaction pattern** — `consumable`, `pickup`, the reveal rule behind Scan | a rule — *how* a verb resolves | a [MAPS Pattern](https://github.com/enduring-game-standard/maps-notation) |
 | **Medium** — `-card`, `-die`, `-token`, `-tile` | the delivery mechanism, an accident of substance | Manifestation property |
 
 ## Why use, mechanic, and medium are not identity
@@ -32,7 +32,8 @@ where a receiving game honors or overrides it.
 **A mechanic is a rule.** `consumable` (used up on use) and `pickup` (acquired by contact)
 describe how a verb resolves, not what a thing is — a potion can be drunk *or* thrown. Rules
 are MAPS Patterns. The chess piece is the Entity; the L-shaped Knight move is a Pattern. You
-can mail someone the Knight; you cannot mail them how the Knight moves.
+can mail someone the Knight; you cannot mail them how the Knight moves. Whether a piece like
+the Knight has an identity apart from its move is still open (see [Open questions](#open-questions)).
 
 **Medium is an accident.** The Ace of Spades is the same whether card, pixel, or clay tile; a
 movement resource is the same whether a board game's "Speed Card" or a die roll. Never suffix a
@@ -45,9 +46,9 @@ recognizable remains, so rank-and-suit *is* the identity.
 A thing's Entity grain is fixed by whether it is a noun for a thing — not by how mechanically
 distinct it is. A Manifestation's mechanical quirks never mint a new Entity. DOOM's nine weapons
 are nine **Manifestations** of a handful of object-noun Entities (`shotgun`, `pistol`,
-`chaingun`, `rocket-launcher`, …) — the super shotgun being a beefier double-barrel does not
-make `super-shotgun` an Entity. The object-noun `double-barrel-shotgun` is the identity;
-`doom:super-shotgun` is its Manifestation.
+`chaingun`, `rocket-launcher`, …). `doom:super-shotgun` is a Manifestation of `shotgun`. Its
+second barrel is a mechanical quirk, so it is a Manifestation property, not a new Entity. Pump,
+double-barrel, and automatic are all `shotgun`.
 
 Disambiguate ambiguous namings at creation, when it is cheap:
 
@@ -78,8 +79,10 @@ convergence-concentration gradient, carried by the **signature**, not by structu
 
 - Ownerless namings are many and interchangeable; the commons converges on one **by use**.
 - An authored concept's authoritative naming is the one signed by its author's key — Nintendo's
-  `link`. Anyone else's `link` is a rival claim a receiver may refuse; the timestamp and
-  signature prove who named it. Convergence concentrates on the author because the world
+  `link`. Anyone else's `link` is a rival claim a receiver may refuse. The signature proves who
+  named it. Only witnesses prove when, because `created_at` is the signer's own claim
+  ([aems-schema ADR-0010](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0010-what-the-substrate-guarantees.md),
+  item 5). Convergence concentrates on the author because the world
   recognizes the author, not because the protocol enforces it.
 
 This is what answers *"Cloud is the same every time, yet represented differently every time"*:
@@ -90,11 +93,14 @@ authored toward folklore — with no change to the data model. Keep namings free
 naming is a perfectly good Entity. See
 [aems-schema ADR-0007](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0007-an-entity-event-is-a-naming-not-the-concept.md).
 
-## What transfer delivers
+## What cross-game import delivers
 
-AEMS transfers **identity, provenance, possession, and condition — never behavior or
-fitness-for-use.** A receiving game reads "this player provably possesses X, descending from
-naming Y, in condition Z," and decides what to do. Cross-game import is a spectrum:
+Carrying a thing into another game delivers **identity, provenance, possession, and
+condition — never behavior or fitness-for-use.** This is cross-game import, not a change of
+owner. Ownership transfer has no convention yet (see the README's
+[Open questions](./README.md#open-questions)). A receiving game reads "this key claims
+possession of X, descending from naming Y, in condition Z," and decides what to honor.
+Cross-game import is a spectrum:
 
 - **Re-instantiation** — the receiver shares the use (Master Sword → Skyrim: a working sword).
 - **Cosmetic / trophy** — the receiver knows the object but has no use for it (Master Sword →
@@ -103,10 +109,11 @@ naming Y, in condition Z," and decides what to do. Cross-game import is a spectr
   nothing, absent a designer's arbitrary fiat).
 
 Trophies and refusals are correct, the way a chess Knight does nothing at a poker table. And
-**agent-entities** (`monster`, `boss`, a character like Samus) and **abilities** (`scan`) can be
-named for provenance but cannot transfer their substance — behavior, which is MAPS/RUNS.
-Importing Samus delivers her identity and a skin, not her moveset; importing Scan delivers the
-orb, not the reveal-power.
+**agent-entities** (`monster`, `boss`, a character like Samus) can be named for provenance but
+cannot carry their substance — behavior, which is MAPS/RUNS. An **ability** is the same. The
+thing that grants it, such as the Scan orb, is a noun and can be named. The reveal rule is a
+Pattern and never belongs on an Entity. Importing Samus delivers her identity and her look,
+not her moveset; importing Scan delivers the orb, not the reveal-power.
 
 ## Thin Entity layers are correct
 
@@ -120,8 +127,8 @@ Entity layer is the right answer, not a sign the conventions failed.
    (a MAPS Pattern), not its shape — unlike Cloud, whose identity is *not* his moveset. Does
    object-identity hold for constitutive pieces, or do they fuse identity with mechanic?
 2. **Agent-entity granularity.** Is `monster` the right grain for all hostile creatures, or do
-   `melee-enemy` / `ranged-enemy` warrant separate namings? Since agents transfer only as
-   provenance plus a skin, the stakes are low — but the grain is unsettled.
+   `melee-enemy` / `ranged-enemy` warrant separate namings? Since agents carry over only as
+   provenance plus a look, the stakes are low — but the grain is unsettled.
 
 ---
 
