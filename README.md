@@ -123,18 +123,22 @@ without a per-publisher adapter:
 A client that knows how to read `image_url` can pull the art for entities from any
 publisher that follows the convention, with no game-specific code.
 
-### 5. Keep Entities IP-agnostic
+### 5. Name the thing, and keep namings free of IP misrepresentation
 
-Name Entities for what something *is* in universal terms — `sword`, `monster`,
-`healing-item` — never for a trademarked character or franchise-specific item. Anything
-owned by someone becomes a **Manifestation** that references a generic Entity and carries
-the franchise attribution itself: the Master Sword is a Manifestation of `sword`, the
-Pinky Demon a Manifestation of `monster`.
+Name an Entity for what a thing *is*. Ownerless concepts like `sword`, `potion`, and
+`monster` are Entities. Authored concepts like `master-sword`, `link`, and `cloud` are
+Entities too. The protocol treats both the same, and the signature carries the authorship
+([aems-schema ADR-0007](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0007-an-entity-event-is-a-naming-not-the-concept.md),
+2026-06-13 Amendment). A use like `healing-item` names what a thing is *for*, so it is a
+Manifestation tag value (#3), not an Entity. A game's interpretation is a **Manifestation**. Breath of the Wild's
+Master Sword is `botw:master-sword`, and it references both `master-sword` and `sword`.
 
-An Entity published to the commons is permanent, signed, and built against by others. An
-IP-agnostic Entity is infrastructure anyone can reference without inheriting someone's
-trademark; naming the trademark as an Entity would stamp it permanently into the commons
-layer. See [entity-abstraction.md](./entity-abstraction.md) for the full guidance.
+The convention is to keep namings free of IP *misrepresentation*. Do not pass off a
+non-author's naming of an authored concept as the author's. Anyone may name `link`, and
+that naming is a rival claim. The author's signed naming is the one a receiver can check
+against the author's key. Others build against a signed Entity, so a misleading naming
+spreads as far as its references do. See [entity-abstraction.md](./entity-abstraction.md)
+for the full guidance.
 
 ## Example: Conventions in Use
 
