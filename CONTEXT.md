@@ -26,8 +26,8 @@ _Avoid_: rule, requirement, mandate, spec
 **Object-identity**:
 What an Entity names — the thing in itself, independent of how any game uses it:
 `sword`, `flask`, `gem`, `fireball`. Intrinsic and durable; it is the spine
-cross-game recognition rides on, and the only part of a thing that transfers
-unchanged. An Entity naming is a real or established-fiction *noun for a thing* —
+cross-game recognition rides on, and the only part of a thing that carries
+over unchanged into another game. An Entity naming is a real or established-fiction *noun for a thing* —
 medium-free and mechanic-free — never a role or an action. Authorship is a separate
 axis that the schema glossary owns (aems-schema ADR-0007, 2026-06-13 Amendment). This tier
 does not redefine it. Object-identity applies the same way to an ownerless naming

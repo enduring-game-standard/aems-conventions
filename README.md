@@ -94,9 +94,8 @@ Prefix a `d`-tag with the game or creator it is scoped to, so the name reads cle
 Prefixes are **readability convenience, never identity**. An event's address is its kind,
 its publisher's key, and its `d`-tag. Two publishers can use the same prefix and their
 events stay distinct, because a reference names the publisher's key or the exact event,
-not the bare string.
-There is no blessed or "standard" namespace — a naming becomes broadly shared only by being widely
-referenced (convergence by use; see [aems-schema ADR-0007](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0007-an-entity-event-is-a-naming-not-the-concept.md)),
+not the bare string. There is no blessed or "standard" namespace — a naming becomes
+broadly shared only by being widely referenced (convergence by use; see [aems-schema ADR-0007](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0007-an-entity-event-is-a-naming-not-the-concept.md)),
 never by wearing a prefix. A bare, unprefixed `d` (`sword`) is the convention for a naming
 intended as broadly shared.
 
