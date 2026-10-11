@@ -68,7 +68,8 @@ nothing. A genuinely dual-natured object (a sword-cane) references two identitie
 
 This is distinct from **roles**, which are many and go on tags: `minecraft:oak-plank` references
 the object-identity `plank`, and carries `category: building-block` and `category: resource`. A
-building game queries the building-block tag; a crafting game queries the resource tag. Multiple
+building game filters for the building-block tag; a crafting game filters for the resource
+tag. Both filters run in the client, since relays don't index multi-letter tags (README #3). Multiple
 Entity references mean multiple *identities*; multiple roles mean multiple *tags*.
 
 ## Authorship is a gradient, not a category

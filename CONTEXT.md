@@ -73,5 +73,6 @@ _Avoid_: essence, the kind, the true Entity
   pure identity, upstream of every other EGS protocol. A Manifestation is game-paired
   and data-rich, so it is the layer that carries the values RUNS processors read and
   names the role MAPS describes — without notating the mechanic (MAPS) or executing it
-  (RUNS). A seam at a boundary, not a dependency: the data co-resides; nothing is
-  imported, and the protocols stay independent.
+  (RUNS). A seam at a boundary, not a dependency: the data co-resides, and a build
+  may bake Manifestation data in, but neither protocol requires the other, and they stay
+  independent.
