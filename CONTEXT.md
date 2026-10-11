@@ -26,14 +26,15 @@ _Avoid_: rule, requirement, mandate, spec
 **Object-identity**:
 What an Entity names — the thing in itself, independent of how any game uses it:
 `sword`, `flask`, `gem`, `fireball`. Intrinsic and durable; it is the spine
-cross-game recognition rides on, and the only part of a thing that transfers
-unchanged. An Entity naming is a real or established-fiction *noun for a thing* —
-medium-free and mechanic-free — never a role or an action. Whether the naming is
-ownerless (`sword`) or authored (`master-sword`) is a separate axis, carried by the
-signature, not a disqualifier — both are Entities (aems-schema ADR-0007). Entity grain
+cross-game recognition rides on, and the only part of a thing that carries
+over unchanged into another game. An Entity naming is a real or established-fiction *noun for a thing* —
+medium-free and mechanic-free — never a role or an action. Authorship is a separate
+axis that the schema glossary owns (aems-schema ADR-0007, 2026-06-13 Amendment). This tier
+does not redefine it. Object-identity applies the same way to an ownerless naming
+(`sword`) and an authored one (`master-sword`). Entity grain
 is set by noun-hood, not by mechanical detail: a Manifestation's mechanical quirks never
-mint a new Entity — `double-barrel-shotgun` is the object-noun; `doom:super-shotgun`
-is its Manifestation.
+mint a new Entity. `doom:super-shotgun` is a Manifestation of `shotgun`; its second
+barrel is a Manifestation property, not a new Entity.
 _Avoid_: type, category, role, kind
 
 **Use-classification**:
@@ -65,12 +66,13 @@ _Avoid_: essence, the kind, the true Entity
   what kind, for whom, for what purpose — and a relation cannot sit in the intrinsic,
   durable Entity slot; it leaks back onto tags every time. The Entity names *identity*
   (object-identity); *classification* (use-classification) is relational and
-  belongs on Manifestation tags. This is the axis on which `entity-abstraction.md` is
-  being re-evaluated.
+  belongs on Manifestation tags. `entity-abstraction.md` is written on this axis
+  (ADR-0002).
 
 - **The Manifestation is the pillar seam; the Entity is pillar-neutral.** An Entity is
   pure identity, upstream of every other EGS protocol. A Manifestation is game-paired
   and data-rich, so it is the layer that carries the values RUNS processors read and
   names the role MAPS describes — without notating the mechanic (MAPS) or executing it
-  (RUNS). A seam at a boundary, not a dependency: the data co-resides; nothing is
-  imported, and the protocols stay independent.
+  (RUNS). A seam at a boundary, not a dependency: the data co-resides, and a build
+  may bake Manifestation data in, but neither protocol requires the other, and they stay
+  independent.

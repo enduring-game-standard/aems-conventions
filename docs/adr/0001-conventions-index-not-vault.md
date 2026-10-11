@@ -10,8 +10,8 @@
 The repo carries three genres of conventions content: **vocabulary** (what events
 carry — tag and property names, namespacing), **namer guidance** (the Entity/Manifestation
 rubric), and **curation** (pointing at canonical published artifacts, e.g. the french-52
-deck). The curation genre raises the question RUNS already faced in its ADR-0014
-amendment: do the canonical artifacts a convention points at live *in* this repo, or on
+deck). The curation genre raises the question EGS workspace ADR-0014 (in the private
+egs-workspace repo) already faced in its amendment: do the canonical artifacts a convention points at live *in* this repo, or on
 the commons with the repo merely pointing?
 
 ## Decision
