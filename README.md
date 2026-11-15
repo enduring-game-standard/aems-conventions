@@ -6,11 +6,9 @@
 
 ---
 
-> **Status**: Design stage. The conventions here are **conceptual examples** —
-> illustrations of the *shape* of a shared answer, with no published, verified artifacts
-> behind them yet, and possibly wrong. Nothing here is blessed or canonical. When real
-> commons artifacts exist, this repo will point at them by reference; it indexes the
-> commons, it does not host it (see [ADR-0001](./docs/adr/0001-conventions-index-not-vault.md)).
+> **Status**: Draft. Every convention here is a **conceptual example** — unpublished,
+> possibly wrong, not canonical. The repo indexes the commons, it does not host it
+> ([ADR-0001](./docs/adr/0001-conventions-index-not-vault.md)).
 
 ## What This Repo Is
 
