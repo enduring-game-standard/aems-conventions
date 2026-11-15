@@ -15,9 +15,10 @@
 ## What This Repo Is
 
 The [AEMS schema](https://github.com/enduring-game-standard/aems-schema) is the kernel:
-four addressable event kinds (Entity, Manifestation, Asset, State), the three parent
-references between them, and addressability. Each event's address is its kind, its
-publisher's key, and its `d` tag, and the latest event at an address is current.
+four event kinds (Entity, Manifestation, Asset, State) and the three parent
+references between them. Whether events are addressable (the address is kind,
+publisher key, and `d` tag, and the latest event at an address is current) or regular
+events that cite the version they replace is open ([aems-schema #29](https://github.com/enduring-game-standard/aems-schema/issues/29)).
 Compliance is exactly that and nothing more. **Follow the schema and you are using
 AEMS.**
 
@@ -35,7 +36,7 @@ publishers adopt it.
 
 ## Why Conventions?
 
-The schema is silent on what events carry beyond the provenance chain, and that silence
+The schema is silent on what events carry beyond the signed parent references, and that silence
 is deliberate. But for two independent clients to read the same deck of cards — or the
 same weapon — without writing custom parsing for every publisher, they need shared
 assumptions about how those events are structured. Conventions provide them:
@@ -55,7 +56,7 @@ conventions only make the underlying events legible to whoever chooses to read t
 
 | Tier | Lives in | Binding? |
 |------|----------|----------|
-| **Protocol** — the four event kinds, the three parent references, and addressability | [aems-schema](https://github.com/enduring-game-standard/aems-schema) | Mandatory for compliance |
+| **Protocol** — the four event kinds and the three parent references | [aems-schema](https://github.com/enduring-game-standard/aems-schema) | Mandatory for compliance |
 | **Conventions** — tag and property vocabularies, naming, namespacing | this repo | Optional, recommended |
 | **Ecosystem** — published Entities, Manifestations, decks, content | the commons (Nostr events) | Permissionless |
 
@@ -113,7 +114,7 @@ An Entity carries only its naming — `d`, `name`, and a `content` description. 
 a dictionary entry: it carries the word and its definition, not the shelving codes a
 library files it under. Classification is what the *users* of a naming do with it, so it
 lives on the Manifestation. Discovery works by finding Manifestations by tag, then reading
-up the chain to their parent Entities. See
+up the references to their parent Entities. See
 [entity-abstraction.md](./entity-abstraction.md) for the reasoning.
 
 These tag names have more than one letter, and relays do not index them. A relay answers
@@ -220,11 +221,10 @@ Per-domain files carry worked examples and recommended patterns:
 
 No convention here covers these yet. The schema leaves them open too.
 
-- **Transfer.** An Asset's address includes its owner's key, so a new owner cannot publish
-  at the old address. A transfer produces a new Asset under the new owner's key. No
-  convention yet links the new Asset to the old one, or to the old Asset's State
-  ([aems-schema ADR-0010](https://github.com/enduring-game-standard/aems-schema/blob/main/docs/adr/0010-what-the-substrate-guarantees.md),
-  item 7). Until one exists, no document here cites a transfer as evidence.
+- **Transfer.** Possession moves by a handoff: a signed event from the current holder
+  that names the next holder ([ANCHOR.md](https://github.com/enduring-game-standard/aems-schema/blob/research/aems-first-principles/ANCHOR.md) section 4). No convention yet fixes its tags, and what
+  a double handoff means is open ([#31](https://github.com/enduring-game-standard/aems-schema/issues/31)). Until a convention exists, no document here
+  cites a transfer as evidence.
 - **State history.** The kernel promises the current event at an address, not its earlier
   versions. Relays may discard older versions. A history exists only where someone archives
   it, or where a publisher gives each State its own address. Which practice to recommend is
@@ -243,7 +243,7 @@ No convention here covers these yet. The schema leaves them open too.
 
 *Part of the [Enduring Game Standard](https://github.com/enduring-game-standard). See the
 [AEMS schema](https://github.com/enduring-game-standard/aems-schema) for the core protocol,
-[RUNS](https://github.com/enduring-game-standard/runs-spec) for game execution,
+[RUNS](https://github.com/enduring-game-standard/runs-spec) for the game's rules as plain-text source,
 [MAPS](https://github.com/enduring-game-standard/maps-notation) for design notation, and
 [WOCS](https://github.com/enduring-game-standard/wocs-protocol) for coordination. Canonical
 acronym expansions live in the [EGS Glossary](https://github.com/enduring-game-standard/.github/blob/main/profile/README.md#glossary).*

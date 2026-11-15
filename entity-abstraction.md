@@ -19,7 +19,7 @@ over unchanged. Three things are *not* object-identity and never belong on an En
 | Not an Entity | What it actually is | Where it lives |
 |---|---|---|
 | **Use / role** — `weapon`, `healing-item`, `super-weapon`, `cooking-tool` | what the thing is *for*, which varies by game and receiver | Manifestation `category`/`type` tags |
-| **Mechanic / interaction pattern** — `consumable`, `pickup`, the reveal rule behind Scan | a rule — *how* a verb resolves | a [MAPS Pattern](https://github.com/enduring-game-standard/maps-notation) |
+| **Mechanic / interaction pattern** — `consumable`, `pickup`, the reveal rule behind Scan | a rule — *how* a verb resolves | the game's rules (RUNS) |
 | **Medium** — `-card`, `-die`, `-token`, `-tile` | the delivery mechanism, an accident of substance | Manifestation property |
 
 ## Why use, mechanic, and medium are not identity
@@ -31,7 +31,7 @@ where a receiving game honors or overrides it.
 
 **A mechanic is a rule.** `consumable` (used up on use) and `pickup` (acquired by contact)
 describe how a verb resolves, not what a thing is — a potion can be drunk *or* thrown. Rules
-are MAPS Patterns. The chess piece is the Entity; the L-shaped Knight move is a Pattern. You
+belong to the game. The chess piece is the Entity; the L-shaped Knight move is a rule. You
 can mail someone the Knight; you cannot mail them how the Knight moves. Whether a piece like
 the Knight has an identity apart from its move is still open (see [Open questions](#open-questions)).
 
@@ -98,7 +98,7 @@ naming is a perfectly good Entity. See
 
 Carrying a thing into another game delivers **identity, provenance, possession, and
 condition — never behavior or fitness-for-use.** This is cross-game import, not a change of
-owner. Ownership transfer has no convention yet (see the README's
+owner. Ownership transfer is a signed handoff whose tags no convention fixes yet (see the README's
 [Open questions](./README.md#open-questions)). A receiving game reads "this key claims
 possession of X, descending from naming Y, in condition Z," and decides what to honor.
 Cross-game import is a spectrum:
@@ -111,21 +111,21 @@ Cross-game import is a spectrum:
 
 Trophies and refusals are correct, the way a chess Knight does nothing at a poker table. And
 **agent-entities** (`monster`, `boss`, a character like Samus) can be named for provenance but
-cannot carry their substance, which is behavior owned by MAPS/RUNS. An **ability** is the same. The
+cannot carry their substance, which is behavior owned by the game's rules. An **ability** is the same. The
 thing that grants it, such as the Scan orb, is a noun and can be named. The reveal rule is a
-Pattern and never belongs on an Entity. Importing Samus delivers her identity and her look,
+rule of the game and never belongs on an Entity. Importing Samus delivers her identity and her look,
 not her moveset; importing Scan delivers the orb, not the reveal-power.
 
 ## Thin Entity layers are correct
 
 The more a game's identity lives in its mechanics rather than its objects, the thinner its AEMS
-layer and the richer its MAPS layer. Chess is six piece-nouns and a deep rulebook; that thin
+layer and the richer its rules. Chess is six piece-nouns and a deep rulebook; that thin
 Entity layer is the right answer, not a sign the conventions failed.
 
 ## Open questions
 
 1. **Constitutive object-identity.** A chess Knight's identity is arguably its movement rule
-   (a MAPS Pattern), not its shape — unlike Cloud, whose identity is *not* his moveset. Does
+   (a rule of the game), not its shape — unlike Cloud, whose identity is *not* his moveset. Does
    object-identity hold for constitutive pieces, or do they fuse identity with mechanic?
 2. **Agent-entity granularity.** Is `monster` the right grain for all hostile creatures, or do
    `melee-enemy` / `ranged-enemy` warrant separate namings? Since agents carry over only as

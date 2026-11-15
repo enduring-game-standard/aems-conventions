@@ -2,7 +2,7 @@
 
 The glossary for the AEMS **conventions tier** — the optional-but-recommended layer
 that sits on top of the [AEMS schema](https://github.com/enduring-game-standard/aems-schema).
-The schema defines four event kinds and the provenance chain between them, and nothing
+The schema defines four event kinds and the signed parent references between them, and nothing
 more (aems-schema ADR-0004); everything about what those events *carry*, and how a
 community converges on shared answers, is conventions territory and lives here.
 
@@ -69,10 +69,6 @@ _Avoid_: essence, the kind, the true Entity
   belongs on Manifestation tags. `entity-abstraction.md` is written on this axis
   (ADR-0002).
 
-- **The Manifestation is the pillar seam; the Entity is pillar-neutral.** An Entity is
-  pure identity, upstream of every other EGS protocol. A Manifestation is game-paired
-  and data-rich, so it is the layer that carries the values RUNS processors read and
-  names the role MAPS describes — without notating the mechanic (MAPS) or executing it
-  (RUNS). A seam at a boundary, not a dependency: the data co-resides, and a build
-  may bake Manifestation data in, but neither protocol requires the other, and they stay
-  independent.
+- **The Manifestation is the seam; the Entity is pure identity.** A Manifestation is
+  game-specific and data-rich. A game may copy its values into its own Records when it
+  is built. RUNS defines no way to read AEMS data, and neither protocol needs the other.

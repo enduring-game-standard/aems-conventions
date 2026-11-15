@@ -1,5 +1,7 @@
 # ADR-0002: The Entity names object-identity; classification is relational; the four-test rubric retires
 
+> **Amended 2026-11-15:** The MAPS notation is undecided (owner, 2026-11-15: "entirely up in the air"). Where this ADR files rules as "MAPS Patterns", read "the game's rules".
+
 - **Status:** Accepted (provisional — reasoned, not yet implemented; "we'll see if it breaks")
 - **Date:** 2026-06-13
 - **Deciders:** Scott (+ Claude)

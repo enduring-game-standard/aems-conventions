@@ -1,5 +1,7 @@
 # ADR-0001: Conventions index over the commons; never a vault
 
+> **Amended 2026-11-15:** aems-schema INTENT.md forbids naming an artifact canonical; read "canonical artifacts" here as "artifacts the community converges on". Whether AEMS events are addressable is open ([aems-schema #29](https://github.com/enduring-game-standard/aems-schema/issues/29)).
+
 - **Status:** Accepted (provisional — reasoned, not yet implemented; "we'll see if it breaks")
 - **Date:** 2026-06-12
 - **Deciders:** Scott (+ Claude)
